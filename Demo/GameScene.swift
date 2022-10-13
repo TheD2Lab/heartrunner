@@ -28,6 +28,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
     let pipeCategory: UInt32 = 1 << 2
     let scoreCategory: UInt32 = 1 << 3
     
+    
     override func didMove(to view: SKView) {
         
         canRestart = true
@@ -39,6 +40,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         // setup background color
         skyColor = SKColor(red: 81.0/255.0, green: 192.0/255.0, blue: 201.0/255.0, alpha: 1.0)
         self.backgroundColor = skyColor
+        
+        // setup music
+        playSound(sound: "happyrock", type: "mp3")
         
         moving = SKNode()
         self.addChild(moving)
@@ -218,6 +222,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         moving.speed = 1
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
         if moving.speed > 0  {
             for _ in touches { // do we need all touches?
                 bird.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
