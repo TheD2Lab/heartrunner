@@ -41,8 +41,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         skyColor = SKColor(red: 81.0/255.0, green: 192.0/255.0, blue: 201.0/255.0, alpha: 1.0)
         self.backgroundColor = skyColor
         
-        // setup music
-        playSound(sound: "happyrock", type: "mp3")
         
         moving = SKNode()
         self.addChild(moving)
