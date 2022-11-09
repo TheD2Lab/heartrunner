@@ -16,7 +16,6 @@
 		984A1DE5221601A000FDCCC8 /* scanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984A1DE4221601A000FDCCC8 /* scanViewController.swift */; };
 		984A1DE8221601A000FDCCC8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 984A1DE6221601A000FDCCC8 /* Main.storyboard */; };
 		984A1DEA221601A100FDCCC8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 984A1DE9221601A100FDCCC8 /* Assets.xcassets */; };
-		984A1DED221601A100FDCCC8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 984A1DEB221601A100FDCCC8 /* LaunchScreen.storyboard */; };
 		984A1DF522172ED600FDCCC8 /* dataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984A1DF422172ED600FDCCC8 /* dataViewController.swift */; };
 		985EA2202565E0340095C78D /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 985EA21F2565E0340095C78D /* CoreBluetooth.framework */; };
 		98C1C408221C8A650025E53F /* scanTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C1C407221C8A650025E53F /* scanTableViewCell.swift */; };
@@ -51,7 +50,6 @@
 		984A1DE4221601A000FDCCC8 /* scanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = scanViewController.swift; sourceTree = "<group>"; };
 		984A1DE7221601A000FDCCC8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		984A1DE9221601A100FDCCC8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		984A1DEC221601A100FDCCC8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		984A1DEE221601A100FDCCC8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		984A1DF422172ED600FDCCC8 /* dataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dataViewController.swift; sourceTree = "<group>"; };
 		985EA21F2565E0340095C78D /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
@@ -116,7 +114,6 @@
 				5A1CBD7128D7E7C8002EB74E /* GameViewController.swift */,
 				980EE5EE221F495A008DC83F /* dataTableViewCell.swift */,
 				984A1DE9221601A100FDCCC8 /* Assets.xcassets */,
-				984A1DEB221601A100FDCCC8 /* LaunchScreen.storyboard */,
 				984A1DEE221601A100FDCCC8 /* Info.plist */,
 			);
 			path = Demo;
@@ -191,7 +188,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C0DD749B2910C89A00B208E7 /* happyrock.mp3 in Resources */,
-				984A1DED221601A100FDCCC8 /* LaunchScreen.storyboard in Resources */,
 				984A1DEA221601A100FDCCC8 /* Assets.xcassets in Resources */,
 				98D6152822C1646F005BD277 /* readme.md in Resources */,
 				5A1CBD7328D7E7C8002EB74E /* bird.atlas in Resources */,
@@ -226,14 +222,6 @@
 				984A1DE7221601A000FDCCC8 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		984A1DEB221601A100FDCCC8 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				984A1DEC221601A100FDCCC8 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -361,9 +349,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Demo/Demo.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = LJKVP96N35;
+				DEVELOPMENT_TEAM = X98ASK9KM6;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -374,7 +363,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.npe-inc.DemoSdk24-dennis";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.npe-inc.DemoSdk24-dennis1";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -386,9 +375,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Demo/Demo.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = LJKVP96N35;
+				DEVELOPMENT_TEAM = X98ASK9KM6;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -399,7 +389,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.npe-inc.DemoSdk24-dennis";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.npe-inc.DemoSdk24-dennis1";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;

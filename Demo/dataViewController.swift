@@ -10,6 +10,7 @@ import Foundation
 import ScoscheSDK24
 import CoreBluetooth
 import UIKit
+import SwiftUI
 
 /// dataViewController: Demo of connecting to a Scosche devices with BLE interface. View uses ScoscheViewController to extend a standard UIViewController with services that report monitor activity.
 ///
@@ -35,6 +36,9 @@ class dataViewController: SchoscheViewController, UITableViewDelegate, UITableVi
     //MARK:- Local Vars
     var listData: [cellRow] = []
     var returnState: cellType = .normal
+//    let dispatchQueue = DispatchQueue(label: "QueueIdentification", qos: .background)
+    var readings: [Int] = []
+    var temp: Int = 0
     
     //MARK:- Functions
     override func viewDidLoad() {
@@ -44,7 +48,46 @@ class dataViewController: SchoscheViewController, UITableViewDelegate, UITableVi
         listData.append(cellRow(type: .normal, value: "Start Up: \(monitor.deviceName ?? "Unknown")"))
     }
     
+    func getDocumentsDirectory() -> URL {
+        // find all possible documents directories for this user
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+
+        // just send back the first one, which ought to be the only one
+        return paths[0]
+    }
+    
     override func reloadTableData(){
+//
+//        dispatchQueue.async{ [self] in
+//        //Time consuming task here
+//
+//
+//
+//
+//        }
+        
+        //ouputing
+        
+//        let temp = self.heartRate
+////            var newArray:[Item] = []
+//        let formatter3 = DateFormatter()
+//        formatter3.dateFormat = "yyyy-MM-dd HH:mm:ss"
+//        let time = formatter3.string(from: Date())
+
+        
+        
+        let str = "Test Message"
+        let url = getDocumentsDirectory().appendingPathComponent("message.txt")
+        print(url)
+        do {
+            try str.write(to: url, atomically: true, encoding: .utf8)
+            let input = try String(contentsOf: url)
+            print(input)
+        } catch {
+            print(error.localizedDescription)
+        }
+            
+        
         listData = []
         listData.append(cellRow(type: .normal, value: "Sensor Name: \(monitor.deviceName ?? "Unknown")"))
         if monitor.r24SportMode != nil {
