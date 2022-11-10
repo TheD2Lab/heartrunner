@@ -56,10 +56,12 @@ class dataViewController: SchoscheViewController, UITableViewDelegate, UITableVi
         return paths[0]
     }
     
-    func CSVFile(){
+    var heartratedata = [[String]]()
+    
+    func CSVFile(read: String){
         let output = OutputStream.toMemory()
         let filename = "test.csv"
-        let documentDir = NSSearchPathForDirectoriesInDomains(.desktopDirectory, .userDomainMask, true)[0] as String
+//        let documentDir = NSSearchPathForDirectoriesInDomains(.desktopDirectory, .userDomainMask, true)[0] as String
 //        let docurl = URL(fileURLWithPath: documentDir).appendingPathComponent(filename)
         let docurl = getDocumentsDirectory().appendingPathComponent(filename)
         let csvWritter = CHCSVWriter(outputStream: output, encoding: String.Encoding.utf8.rawValue, delimiter:",".utf16.first!)
@@ -68,10 +70,10 @@ class dataViewController: SchoscheViewController, UITableViewDelegate, UITableVi
         csvWritter?.writeField("timestamp")
         csvWritter?.finishLine()
         
-        var heartratedata = [[String]]()
-        heartratedata.append(["75","2022-01-01 12:00:00"])
-        heartratedata.append(["76","2022-01-01 12:00:01"])
-        heartratedata.append(["77","2022-01-01 12:00:01"])
+        let time = Date()
+        
+
+        heartratedata.append([read, "\(time)"])
         
         for(elements) in heartratedata.enumerated(){
             csvWritter?.writeField(elements.element[0])
@@ -90,7 +92,7 @@ class dataViewController: SchoscheViewController, UITableViewDelegate, UITableVi
     }
     
     override func reloadTableData(){
-        CSVFile()
+        CSVFile(read: "\(heartRate)")
         
 //        let str = "Test Message"
 //        let url = getDocumentsDirectory().appendingPathComponent("message.csv")
