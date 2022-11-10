@@ -56,37 +56,51 @@ class dataViewController: SchoscheViewController, UITableViewDelegate, UITableVi
         return paths[0]
     }
     
-    override func reloadTableData(){
-//
-//        dispatchQueue.async{ [self] in
-//        //Time consuming task here
-//
-//
-//
-//
-//        }
+    func CSVFile(){
+        let output = OutputStream.toMemory()
+        let filename = "test.csv"
+        let documentDir = NSSearchPathForDirectoriesInDomains(.desktopDirectory, .userDomainMask, true)[0] as String
+//        let docurl = URL(fileURLWithPath: documentDir).appendingPathComponent(filename)
+        let docurl = getDocumentsDirectory().appendingPathComponent(filename)
+        let csvWritter = CHCSVWriter(outputStream: output, encoding: String.Encoding.utf8.rawValue, delimiter:",".utf16.first!)
         
-        //ouputing
+        csvWritter?.writeField("HeartRate")
+        csvWritter?.writeField("timestamp")
+        csvWritter?.finishLine()
         
-//        let temp = self.heartRate
-////            var newArray:[Item] = []
-//        let formatter3 = DateFormatter()
-//        formatter3.dateFormat = "yyyy-MM-dd HH:mm:ss"
-//        let time = formatter3.string(from: Date())
-
+        var heartratedata = [[String]]()
+        heartratedata.append(["75","2022-01-01 12:00:00"])
+        heartratedata.append(["76","2022-01-01 12:00:01"])
+        heartratedata.append(["77","2022-01-01 12:00:01"])
         
-        
-        let str = "Test Message"
-        let url = getDocumentsDirectory().appendingPathComponent("message.txt")
-        print(url)
-        do {
-            try str.write(to: url, atomically: true, encoding: .utf8)
-            let input = try String(contentsOf: url)
-            print(input)
-        } catch {
-            print(error.localizedDescription)
+        for(elements) in heartratedata.enumerated(){
+            csvWritter?.writeField(elements.element[0])
+            csvWritter?.writeField(elements.element[1])
+            csvWritter?.finishLine()
         }
+        
+        csvWritter?.closeStream()
+        
+        let buffer = (output.property(forKey: .dataWrittenToMemoryStreamKey) as? Data)!
+        do{
+            try buffer.write(to: docurl)
+        }catch{
             
+        }
+    }
+    
+    override func reloadTableData(){
+        CSVFile()
+        
+//        let str = "Test Message"
+//        let url = getDocumentsDirectory().appendingPathComponent("message.csv")
+//        do {
+//            try str.write(to: url, atomically: true, encoding: .utf8)
+//            let input = try String(contentsOf: url)
+//            print(input)
+//        } catch {
+//            print(error.localizedDescription)
+//        }
         
         listData = []
         listData.append(cellRow(type: .normal, value: "Sensor Name: \(monitor.deviceName ?? "Unknown")"))
