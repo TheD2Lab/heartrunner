@@ -12,6 +12,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
     let verticalPipeGap = 150.0
     
     var bird:SKSpriteNode!
+    var blackbird:SKSpriteNode!
     var skyColor:SKColor!
     var pipeTextureUp:SKTexture!
     var pipeTextureDown:SKTexture!
@@ -104,8 +105,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         birdTexture1.filteringMode = .nearest
         let birdTexture2 = SKTexture(imageNamed: "bird-02")
         birdTexture2.filteringMode = .nearest
+        let birdTexture3 = SKTexture(imageNamed: "bird-03")
+        birdTexture3.filteringMode = .nearest
+        let birdTexture4 = SKTexture(imageNamed: "bird-04")
+        birdTexture4.filteringMode = .nearest
         
-        let anim = SKAction.animate(with: [birdTexture1, birdTexture2], timePerFrame: 0.2)
+        let anim = SKAction.animate(with: [birdTexture1, birdTexture2, birdTexture3, birdTexture4], timePerFrame: 0.2)
         let flap = SKAction.repeatForever(anim)
         
         bird = SKSpriteNode(texture: birdTexture1)
@@ -123,6 +128,36 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         bird.physicsBody?.contactTestBitMask = worldCategory | pipeCategory
         
         self.addChild(bird)
+        
+        
+        // setup our bird
+        let blackbirdTexture1 = SKTexture(imageNamed: "bird-a")
+        blackbirdTexture1.filteringMode = .nearest
+        let blackbirdTexture2 = SKTexture(imageNamed: "bird-b")
+        blackbirdTexture2.filteringMode = .nearest
+        let blackbirdTexture3 = SKTexture(imageNamed: "bird-c")
+        blackbirdTexture3.filteringMode = .nearest
+        let blackbirdTexture4 = SKTexture(imageNamed: "bird-d")
+        blackbirdTexture4.filteringMode = .nearest
+        
+        let anim2 = SKAction.animate(with: [blackbirdTexture1, blackbirdTexture2, blackbirdTexture3, blackbirdTexture4], timePerFrame: 0.2)
+        let flap2 = SKAction.repeatForever(anim2)
+        
+        blackbird = SKSpriteNode(texture: blackbirdTexture1)
+        blackbird.setScale(2.0)
+        blackbird.position = CGPoint(x: self.frame.size.width * 0.55, y:self.frame.size.height * 0.6)
+        blackbird.run(flap2)
+        
+        
+        blackbird.physicsBody = SKPhysicsBody(circleOfRadius: blackbird.size.height / 2.0)
+        blackbird.physicsBody?.isDynamic = true
+        blackbird.physicsBody?.allowsRotation = false
+        
+        blackbird.physicsBody?.categoryBitMask = birdCategory
+        blackbird.physicsBody?.collisionBitMask = worldCategory | pipeCategory
+        blackbird.physicsBody?.contactTestBitMask = worldCategory | pipeCategory
+        
+        self.addChild(blackbird)
         
         // create the ground
         let ground = SKNode()
@@ -204,6 +239,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         bird.speed = 1.0
         bird.zRotation = 0.0
         
+        // Move blackbird to original position and reset velocity
+        blackbird.position = CGPoint(x: self.frame.size.width / 2.5, y: self.frame.midY)
+        blackbird.physicsBody?.velocity = CGVector( dx: 0, dy: 0 )
+        blackbird.physicsBody?.collisionBitMask = worldCategory | pipeCategory
+        blackbird.speed = 1.0
+        blackbird.zRotation = 0.0
+        
         // Remove all existing pipes
         pipes.removeAllChildren()
         
@@ -231,8 +273,28 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
     override func update(_ currentTime: TimeInterval) {
         /* Called before each frame is rendered */
         let value = bird.physicsBody!.velocity.dy * ( bird.physicsBody!.velocity.dy < 0 ? 0.003 : 0.001 )
+        let value2 = blackbird.physicsBody!.velocity.dy * ( blackbird.physicsBody!.velocity.dy < 0 ? 0.003 : 0.001 )
         bird.zRotation = min( max(-1, value), 0.5 )
-        print(counter)
+        blackbird.zRotation = min( max(-1, value), 0.5 )
+
+//        print(counter)
+        
+        var reading = 0
+        let file = "reading.txt"
+        if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+
+            let fileURL = dir.appendingPathComponent(file)
+
+            //reading
+            do {
+                let temp = try String(contentsOf: fileURL, encoding: .utf8)
+                reading = Int(temp)!
+                print(reading)
+            }
+            catch {/* error handling here */}
+        }
+        
+        
     }
     
     func didBegin(_ contact: SKPhysicsContact) {
