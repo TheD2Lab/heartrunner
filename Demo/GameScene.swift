@@ -115,7 +115,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         
         bird = SKSpriteNode(texture: birdTexture1)
         bird.setScale(2.0)
-        bird.position = CGPoint(x: self.frame.size.width * 0.35, y:self.frame.size.height * 0.6)
+        bird.position = CGPoint(x: self.frame.size.width * 0.25, y:self.frame.size.height * 0.65)
         bird.run(flap)
         
         
@@ -130,7 +130,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         self.addChild(bird)
         
         
-        // setup our bird
+        // setup our black bird
         let blackbirdTexture1 = SKTexture(imageNamed: "bird-a")
         blackbirdTexture1.filteringMode = .nearest
         let blackbirdTexture2 = SKTexture(imageNamed: "bird-b")
@@ -145,7 +145,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         
         blackbird = SKSpriteNode(texture: blackbirdTexture1)
         blackbird.setScale(2.0)
-        blackbird.position = CGPoint(x: self.frame.size.width * 0.55, y:self.frame.size.height * 0.6)
+        blackbird.position = CGPoint(x: self.frame.size.width * 0.25, y:self.frame.size.height * 0.5)
         blackbird.run(flap2)
         
         
@@ -166,7 +166,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         ground.physicsBody?.isDynamic = false
         ground.physicsBody?.categoryBitMask = worldCategory
         self.addChild(ground)
-    
+        
+        
+        
+        // Initialize label and create a label which holds the score // turn this into the minute counter
+//        pie = 20
+//        scoreLabelNode = SKLabelNode(fontNamed:"MarkerFelt-Wide")
+//        scoreLabelNode.position = CGPoint( x: self.frame.midX, y: 3 * self.frame.size.height / 4 )
+//        scoreLabelNode.zPosition = 100
+//        scoreLabelNode.text = String(score)
+//        self.addChild(scoreLabelNode)
+//        counter = score * 60
+        
         // Initialize label and create a label which holds the score // turn this into the minute counter
         score = 20
         scoreLabelNode = SKLabelNode(fontNamed:"MarkerFelt-Wide")
@@ -175,7 +186,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         scoreLabelNode.text = String(score)
         self.addChild(scoreLabelNode)
         counter = score * 60
-
+        
         
     }
     
@@ -230,54 +241,51 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
 //        pipes.addChild(pipePair)
 //
 //    }
+//
+//    func resetScene (){
+//        // Move bird to original position and reset velocity
+//        bird.position = CGPoint(x: self.frame.size.width / 2.5, y: self.frame.midY)
+//        bird.physicsBody?.velocity = CGVector( dx: 0, dy: 0 )
+//        bird.physicsBody?.collisionBitMask = worldCategory | pipeCategory
+//        bird.speed = 1.0
+//        bird.zRotation = 0.0
+//
+//        // Move blackbird to original position and reset velocity
+//        blackbird.position = CGPoint(x: self.frame.size.width / 2.5, y: self.frame.midY)
+//        blackbird.physicsBody?.velocity = CGVector( dx: 0, dy: 0 )
+//        blackbird.physicsBody?.collisionBitMask = worldCategory | pipeCategory
+//        blackbird.speed = 1.0
+//        blackbird.zRotation = 0.0
+//
+//        // Remove all existing pipes
+//        pipes.removeAllChildren()
+//
+//        // Reset _canRestart
+//        canRestart = false
+//
+//        // Reset score
+//        score = 0
+//        scoreLabelNode.text = String(score)
+//
+//        // Restart animation
+//        moving.speed = 1
+//    }
     
-    func resetScene (){
-        // Move bird to original position and reset velocity
-        bird.position = CGPoint(x: self.frame.size.width / 2.5, y: self.frame.midY)
-        bird.physicsBody?.velocity = CGVector( dx: 0, dy: 0 )
-        bird.physicsBody?.collisionBitMask = worldCategory | pipeCategory
-        bird.speed = 1.0
-        bird.zRotation = 0.0
-        
-        // Move blackbird to original position and reset velocity
-        blackbird.position = CGPoint(x: self.frame.size.width / 2.5, y: self.frame.midY)
-        blackbird.physicsBody?.velocity = CGVector( dx: 0, dy: 0 )
-        blackbird.physicsBody?.collisionBitMask = worldCategory | pipeCategory
-        blackbird.speed = 1.0
-        blackbird.zRotation = 0.0
-        
-        // Remove all existing pipes
-        pipes.removeAllChildren()
-        
-        // Reset _canRestart
-        canRestart = false
-        
-        // Reset score
-        score = 0
-        scoreLabelNode.text = String(score)
-        
-        // Restart animation
-        moving.speed = 1
-    }
+
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if moving.speed > 0  {
             for _ in touches { // do we need all touches?
                 bird.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
                 bird.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 30))
             }
-        } else if canRestart {
-            self.resetScene()
         }
+//        else if canRestart {
+//            self.resetScene()
+//        }
     }
     
     override func update(_ currentTime: TimeInterval) {
         /* Called before each frame is rendered */
-        let value = bird.physicsBody!.velocity.dy * ( bird.physicsBody!.velocity.dy < 0 ? 0.003 : 0.001 )
-        let value2 = blackbird.physicsBody!.velocity.dy * ( blackbird.physicsBody!.velocity.dy < 0 ? 0.003 : 0.001 )
-        bird.zRotation = min( max(-1, value), 0.5 )
-        blackbird.zRotation = min( max(-1, value), 0.5 )
-
-//        print(counter)
         
         var reading = 0
         let file = "reading.txt"
@@ -289,7 +297,31 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
             do {
                 let temp = try String(contentsOf: fileURL, encoding: .utf8)
                 reading = Int(temp)!
-                print(reading)
+                var tempreading = Double(reading)
+                tempreading = tempreading - 70 //assuming base is 70 bps
+                if (tempreading > 100) {tempreading = 100}
+                //assume 170 as max heart rate
+                //170 is at height * 0.85
+                // 70 is at height * 0.35
+                // from 0.65 is range from 100 , 0.1 for every 20 bit, 0.005 per bps
+
+                let heartrateposition = (0.0065*tempreading) + 0.25
+
+                bird.position = CGPoint(x: self.frame.size.width * heartrateposition, y:self.frame.size.height * 0.65)
+                
+                //get the reading of the other device on cloud and use that reading for the heart rate postion calculator
+//                let temp = try String(contentsOf: fileURL, encoding: .utf8)
+//                reading = Int(temp)!
+//                var tempreading = Double(reading)
+//                tempreading = tempreading - 70
+//                print(tempreading)
+                //170 as max heart rate
+                //170 is at height * 0.85
+                // 70 is at height * 0.35
+                // from 0.5 is range from 100 , 0.1 for every 20 bit, 100/0.5
+//                let heartrateposition = (0.005*tempreading) + 0.35
+                blackbird.position = CGPoint(x: self.frame.size.width * heartrateposition, y:self.frame.size.height * 0.5)
+
             }
             catch {/* error handling here */}
         }
