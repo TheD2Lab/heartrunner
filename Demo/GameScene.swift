@@ -7,7 +7,8 @@
 //
 
 import SpriteKit
-import SwiftUI
+//import SwiftUI
+
 
 class GameScene: SKScene, SKPhysicsContactDelegate{
     let verticalPipeGap = 150.0
@@ -29,7 +30,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
     var score = NSInteger()
     var counter = NSInteger()
     let starttime = Date()
-    
     
     let birdCategory: UInt32 = 1 << 0
     let worldCategory: UInt32 = 1 << 1
@@ -185,12 +185,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
 //        birdheartrate.color = SKColor(red: 0, green: 0, blue: 0, alpha: 1.0)
         birdheartrate.position = CGPoint(x: self.frame.size.width * 0.40, y:self.frame.size.height * 0.9)
         birdheartrate.zPosition = 100
+        birdheartrate.fontColor = SKColor.black
         birdheartrate.text = String(score)
         self.addChild(birdheartrate)
         
         staticblackbird =  SKSpriteNode(texture: blackbirdTexture1)
         staticblackbird.setScale(2.0)
-        staticbird.zPosition = 100
+        staticblackbird.zPosition = 100
         staticblackbird.position = CGPoint(x: self.frame.size.width * 0.6, y:self.frame.size.height * 0.92)
         self.addChild(staticblackbird)
         
@@ -200,9 +201,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
 //        blackbirdheartrate.color = SKColor(red: 0, green: 0, blue: 0, alpha: 1.0)
         blackbirdheartrate.position = CGPoint(x: self.frame.size.width * 0.7, y:self.frame.size.height * 0.9)
         blackbirdheartrate.zPosition = 100
+        blackbirdheartrate.fontColor = SKColor.black
         blackbirdheartrate.text = String(score)
         self.addChild(blackbirdheartrate)
-        
         
         
         // create the ground
@@ -216,19 +217,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         
         
         // Initialize label and create a label which holds the score // turn this into the minute counter
-//        pie = 20
-//        scoreLabelNode = SKLabelNode(fontNamed:"MarkerFelt-Wide")
-//        scoreLabelNode.position = CGPoint( x: self.frame.midX, y: 3 * self.frame.size.height / 4 )
-//        scoreLabelNode.zPosition = 100
-//        scoreLabelNode.text = String(score)
-//        self.addChild(scoreLabelNode)
-//        counter = score * 60
+//
+        // draw clock circle
+        drawcircle()
+
         
         // Initialize label and create a label which holds the score // turn this into the minute counter
         score = 20
         scoreLabelNode = SKLabelNode(fontNamed:"MarkerFelt-Wide")
         scoreLabelNode.position = CGPoint( x: self.frame.midX, y: 3 * self.frame.size.height / 4 )
         scoreLabelNode.zPosition = 100
+        scoreLabelNode.fontColor = SKColor.black
         scoreLabelNode.text = String(score)
         self.addChild(scoreLabelNode)
         counter = score * 60
@@ -236,6 +235,57 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         
     }
     
+    func drawcircle(){
+        
+        // draw clock circle
+        let circle = SKShapeNode(circleOfRadius: 30)
+            circle.fillColor = SKColor.yellow
+            circle.strokeColor = SKColor.clear
+            circle.zRotation = CGFloat.pi / 2
+            circle.position = CGPoint( x: self.frame.midX, y: (3 * self.frame.size.height / 4)+10 )
+            addChild(circle)
+
+            countdown(circle: circle, steps: 60, duration: 60) {}
+
+    }
+    
+    // Creates an animated countdown timer
+    func countdown(circle:SKShapeNode, steps:Int, duration:TimeInterval, completion:@escaping ()->Void) {
+        guard let path = circle.path else {
+            return
+        }
+        let radius = path.boundingBox.width/2
+        let timeInterval = duration/TimeInterval(steps)
+        let incr = 1 / CGFloat(steps)
+        var percent = CGFloat(1.0)
+
+        let animate = SKAction.run {
+            percent -= incr
+            circle.path = self.circle(radius: radius, percent:percent)
+        }
+        let wait = SKAction.wait(forDuration:timeInterval)
+        let action = SKAction.sequence([wait, animate])
+
+        run(SKAction.repeat(action,count:steps-1)) {
+            self.run(SKAction.wait(forDuration:timeInterval)) {
+                circle.path = nil
+                completion()
+            }
+        }
+    }
+
+    // Creates a CGPath in the shape of a pie with slices missing
+    func circle(radius:CGFloat, percent:CGFloat) -> CGPath {
+        let start:CGFloat = 0
+        let end = CGFloat.pi * 2 * percent
+        let center = CGPoint.zero
+        let bezierPath = UIBezierPath()
+        bezierPath.move(to:center)
+        bezierPath.addArc(withCenter:center, radius: radius, startAngle: start, endAngle: end, clockwise: true)
+        bezierPath.addLine(to:center)
+        return bezierPath.cgPath
+    }
+
     
     @objc func updateCounter() {
         //example functionality
@@ -331,11 +381,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
     }
     
     override func update(_ currentTime: TimeInterval) {
+        
+        
         /* Called before each frame is rendered */
         let interval = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: starttime, to: Date())
-        print(Int(interval.second!))
+        if(Int(interval.second!) == 0) {drawcircle()}
         score = 20 - Int(interval.minute!)
         scoreLabelNode.text = String(score)
+        
         
         var reading = 0
         let file = "reading.txt"
