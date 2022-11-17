@@ -7,12 +7,15 @@
 //
 
 import SpriteKit
+import SwiftUI
 
 class GameScene: SKScene, SKPhysicsContactDelegate{
     let verticalPipeGap = 150.0
     
     var bird:SKSpriteNode!
     var blackbird:SKSpriteNode!
+    var staticbird:SKSpriteNode!
+    var staticblackbird:SKSpriteNode!
     var skyColor:SKColor!
     var pipeTextureUp:SKTexture!
     var pipeTextureDown:SKTexture!
@@ -21,8 +24,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
     var pipes:SKNode!
     var canRestart = Bool()
     var scoreLabelNode:SKLabelNode!
+    var birdheartrate:SKLabelNode!
+    var blackbirdheartrate:SKLabelNode!
     var score = NSInteger()
     var counter = NSInteger()
+    let starttime = Date()
+    
     
     let birdCategory: UInt32 = 1 << 0
     let worldCategory: UInt32 = 1 << 1
@@ -159,6 +166,45 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         
         self.addChild(blackbird)
         
+        //set heart rate board
+        
+        let scoreBoardTexture = SKSpriteNode(imageNamed: "land")
+        scoreBoardTexture.setScale(1.5)
+        scoreBoardTexture.position = CGPoint(x: self.frame.size.width * 0.50, y:self.frame.size.height * 0.95)
+        self.addChild(scoreBoardTexture)
+        
+        staticbird =  SKSpriteNode(texture: birdTexture1)
+        staticbird.setScale(2.0)
+        staticbird.zPosition = 100
+        staticbird.position = CGPoint(x: self.frame.size.width * 0.30, y:self.frame.size.height * 0.92)
+        self.addChild(staticbird)
+        
+        
+        score = 70
+        birdheartrate = SKLabelNode(fontNamed:"MarkerFelt-Wide")
+//        birdheartrate.color = SKColor(red: 0, green: 0, blue: 0, alpha: 1.0)
+        birdheartrate.position = CGPoint(x: self.frame.size.width * 0.40, y:self.frame.size.height * 0.9)
+        birdheartrate.zPosition = 100
+        birdheartrate.text = String(score)
+        self.addChild(birdheartrate)
+        
+        staticblackbird =  SKSpriteNode(texture: blackbirdTexture1)
+        staticblackbird.setScale(2.0)
+        staticbird.zPosition = 100
+        staticblackbird.position = CGPoint(x: self.frame.size.width * 0.6, y:self.frame.size.height * 0.92)
+        self.addChild(staticblackbird)
+        
+        
+        score = 70
+        blackbirdheartrate = SKLabelNode(fontNamed:"MarkerFelt-Wide")
+//        blackbirdheartrate.color = SKColor(red: 0, green: 0, blue: 0, alpha: 1.0)
+        blackbirdheartrate.position = CGPoint(x: self.frame.size.width * 0.7, y:self.frame.size.height * 0.9)
+        blackbirdheartrate.zPosition = 100
+        blackbirdheartrate.text = String(score)
+        self.addChild(blackbirdheartrate)
+        
+        
+        
         // create the ground
         let ground = SKNode()
         ground.position = CGPoint(x: 0, y: groundTexture.size().height)
@@ -286,6 +332,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
     
     override func update(_ currentTime: TimeInterval) {
         /* Called before each frame is rendered */
+        let interval = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: starttime, to: Date())
+        print(Int(interval.second!))
+        score = 20 - Int(interval.minute!)
+        scoreLabelNode.text = String(score)
         
         var reading = 0
         let file = "reading.txt"
@@ -321,7 +371,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
                 // from 0.5 is range from 100 , 0.1 for every 20 bit, 100/0.5
 //                let heartrateposition = (0.005*tempreading) + 0.35
                 blackbird.position = CGPoint(x: self.frame.size.width * heartrateposition, y:self.frame.size.height * 0.5)
-
+                
+                
+                //update heart rate score
+                birdheartrate.text = String(temp)
+                blackbirdheartrate.text = String(temp)
             }
             catch {/* error handling here */}
         }
