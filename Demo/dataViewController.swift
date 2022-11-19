@@ -63,8 +63,6 @@ class dataViewController: SchoscheViewController, UITableViewDelegate, UITableVi
     func CSVRecordFile(read: String){
         let output = OutputStream.toMemory()
         let filename = "record.csv"
-//        let documentDir = NSSearchPathForDirectoriesInDomains(.desktopDirectory, .userDomainMask, true)[0] as String
-//        let docurl = URL(fileURLWithPath: documentDir).appendingPathComponent(filename)
         let docurl = getDocumentsDirectory().appendingPathComponent(filename)
         let csvWritter = CHCSVWriter(outputStream: output, encoding: String.Encoding.utf8.rawValue, delimiter:",".utf16.first!)
         
@@ -95,39 +93,18 @@ class dataViewController: SchoscheViewController, UITableViewDelegate, UITableVi
     
     
     func CSVReadingFile(read: String){
-        let output = OutputStream.toMemory()
+        let stringToSave = "\(read)"
         let filename = "reading.txt"
-//        let documentDir = NSSearchPathForDirectoriesInDomains(.desktopDirectory, .userDomainMask, true)[0] as String
-//        let docurl = URL(fileURLWithPath: documentDir).appendingPathComponent(filename)
-        let docurl = getDocumentsDirectory().appendingPathComponent(filename)
-        let csvWritter = CHCSVWriter(outputStream: output, encoding: String.Encoding.utf8.rawValue, delimiter:",".utf16.first!)
-        
-        csvWritter?.writeField("\(read)")
-        csvWritter?.finishLine()
-        
-        csvWritter?.closeStream()
-        
-        let buffer = (output.property(forKey: .dataWrittenToMemoryStreamKey) as? Data)!
-        do{
-            try buffer.write(to: docurl)
-        }catch{
-            
+        let path = getDocumentsDirectory().appendingPathComponent(filename)
+        if let stringData = stringToSave.data(using: .utf8) {
+            try? stringData.write(to: path)
         }
+        
     }
     
     override func reloadTableData(){
         CSVRecordFile(read: "\(heartRate)")
-//        CSVReadingFile(read: "\(heartRate)")
-        
-        let str = "\(heartRate)"
-        let url = getDocumentsDirectory().appendingPathComponent("reading.txt")
-        do {
-            try str.write(to: url, atomically: true, encoding: .utf8)
-            let input = try String(contentsOf: url)
-//            print(input)
-        } catch {
-            print(error.localizedDescription)
-        }
+        CSVReadingFile(read: "\(heartRate)")
         
         listData = []
         listData.append(cellRow(type: .normal, value: "Sensor Name: \(monitor.deviceName ?? "Unknown")"))
@@ -226,76 +203,36 @@ class dataViewController: SchoscheViewController, UITableViewDelegate, UITableVi
     
     // setting run time
     @IBAction func twentymin(_ sender: UIButton) {
-        let output = OutputStream.toMemory()
+        let stringToSave = "20"
         let filename = "runtime.txt"
-        let docurl = getDocumentsDirectory().appendingPathComponent(filename)
-        let csvWritter = CHCSVWriter(outputStream: output, encoding: String.Encoding.utf8.rawValue, delimiter:",".utf16.first!)
-        
-        csvWritter?.writeField("20")
-//        csvWritter?.finishLine()
-        
-        csvWritter?.closeStream()
-        
-        let buffer = (output.property(forKey: .dataWrittenToMemoryStreamKey) as? Data)!
-        do{
-            try buffer.write(to: docurl)
-        }catch{
-            
+        let path = getDocumentsDirectory().appendingPathComponent(filename)
+        if let stringData = stringToSave.data(using: .utf8) {
+            try? stringData.write(to: path)
         }
     }
     @IBAction func fifthteenmin(_ sender: UIButton) {
-        let output = OutputStream.toMemory()
+        let stringToSave = "15"
         let filename = "runtime.txt"
-        let docurl = getDocumentsDirectory().appendingPathComponent(filename)
-        let csvWritter = CHCSVWriter(outputStream: output, encoding: String.Encoding.utf8.rawValue, delimiter:",".utf16.first!)
-        
-        csvWritter?.writeField("15")
-//        csvWritter?.finishLine()
-        
-        csvWritter?.closeStream()
-        
-        let buffer = (output.property(forKey: .dataWrittenToMemoryStreamKey) as? Data)!
-        do{
-            try buffer.write(to: docurl)
-        }catch{
-            
+        let path = getDocumentsDirectory().appendingPathComponent(filename)
+        if let stringData = stringToSave.data(using: .utf8) {
+            try? stringData.write(to: path)
         }
     }
     @IBAction func tenmin(_ sender: UIButton) {
-        let output = OutputStream.toMemory()
+        let stringToSave = "10"
         let filename = "runtime.txt"
-        let docurl = getDocumentsDirectory().appendingPathComponent(filename)
-        let csvWritter = CHCSVWriter(outputStream: output, encoding: String.Encoding.utf8.rawValue, delimiter:",".utf16.first!)
-        
-        csvWritter?.writeField("10")
-//        csvWritter?.finishLine()
-        
-        csvWritter?.closeStream()
-        
-        let buffer = (output.property(forKey: .dataWrittenToMemoryStreamKey) as? Data)!
-        do{
-            try buffer.write(to: docurl)
-        }catch{
-            
+        let path = getDocumentsDirectory().appendingPathComponent(filename)
+        if let stringData = stringToSave.data(using: .utf8) {
+            try? stringData.write(to: path)
         }
     }
     
     @IBAction func fivemin(_ sender: UIButton) {
-        let output = OutputStream.toMemory()
+        let stringToSave = "1"
         let filename = "runtime.txt"
-        let docurl = getDocumentsDirectory().appendingPathComponent(filename)
-        let csvWritter = CHCSVWriter(outputStream: output, encoding: String.Encoding.utf8.rawValue, delimiter:",".utf16.first!)
-        
-        csvWritter?.writeField("5")
-//        csvWritter?.finishLine()
-        
-        csvWritter?.closeStream()
-        
-        let buffer = (output.property(forKey: .dataWrittenToMemoryStreamKey) as? Data)!
-        do{
-            try buffer.write(to: docurl)
-        }catch{
-            
+        let path = getDocumentsDirectory().appendingPathComponent(filename)
+        if let stringData = stringToSave.data(using: .utf8) {
+            try? stringData.write(to: path)
         }
     }
     

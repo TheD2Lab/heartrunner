@@ -13,6 +13,8 @@ import SpriteKit
 class GameScene: SKScene, SKPhysicsContactDelegate{
     let verticalPipeGap = 150.0
     
+    
+    
     var bird:SKSpriteNode!
     var blackbird:SKSpriteNode!
     var staticbird:SKSpriteNode!
@@ -30,6 +32,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
     var score = NSInteger()
     var counter = NSInteger()
     let starttime = Date()
+    var maxreading: Int = 0
     
 //    var runtime = NSInteger()
     var runtime = 20
@@ -41,7 +44,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
     
     override func didMove(to view: SKView) {
         
+        //being init
         canRestart = true
+        //disable touch
+        UIApplication.shared.beginIgnoringInteractionEvents()
         
         // setup physics
         self.physicsWorld.gravity = CGVector( dx: 0.0, dy: 0.0 )
@@ -220,7 +226,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         self.addChild(ground)
         
         //give time the file to finish writting
-        let timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { (timer) in
+        let timer = Timer.scheduledTimer(withTimeInterval: 0.05, repeats: false) { (timer) in
             let file = "runtime.txt"
             if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
 
@@ -420,6 +426,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
             do {
                 let temp = try String(contentsOf: fileURL, encoding: .utf8)
                 reading = Int(temp)!
+                
+                // getting max reading for the end
+                if (reading > maxreading) {maxreading = reading}
+                
                 var tempreading = Double(reading)
                 tempreading = tempreading - 70 //assuming base is 70 bps
                 if (tempreading > 100) {tempreading = 100}
@@ -455,10 +465,26 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         }
         
         if (score < 1){
-            let scoreBoardTexture = SKSpriteNode(imageNamed: "scoreboard")
-            scoreBoardTexture.setScale(1.5)
-            scoreBoardTexture.position = CGPoint(x: self.frame.size.width/2, y:self.frame.size.height/2)
-            self.addChild(scoreBoardTexture)
+//            only run once
+            if (canRestart == true ){
+                let scoreBoardTexture = SKSpriteNode(imageNamed: "scoreboard")
+                scoreBoardTexture.setScale(1.5)
+                scoreBoardTexture.position = CGPoint(x: self.frame.size.width/2, y:self.frame.size.height/2)
+                scoreBoardTexture.zPosition = 120
+                self.addChild(scoreBoardTexture)
+                
+                let scoreMaxNode = SKLabelNode(fontNamed:"MarkerFelt-Wide")
+                scoreMaxNode.position = CGPoint(x: self.frame.size.width/2, y:((self.frame.size.height/2) - 50))
+                scoreMaxNode.zPosition = 121
+                scoreMaxNode.fontColor = SKColor.black
+                scoreMaxNode.text = String(maxreading)
+                
+                self.addChild(scoreMaxNode)
+                UIApplication.shared.endIgnoringInteractionEvents()
+            }
+            canRestart = false
+            // allow touch again
+            
         }
         
     }
