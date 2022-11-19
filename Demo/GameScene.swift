@@ -31,6 +31,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
     var counter = NSInteger()
     let starttime = Date()
     
+//    var runtime = NSInteger()
+    var runtime = 20
+    
     let birdCategory: UInt32 = 1 << 0
     let worldCategory: UInt32 = 1 << 1
     let pipeCategory: UInt32 = 1 << 2
@@ -166,6 +169,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         
         self.addChild(blackbird)
         
+        
+        
         //set heart rate board
         
         let scoreBoardTexture = SKSpriteNode(imageNamed: "land")
@@ -214,6 +219,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         ground.physicsBody?.categoryBitMask = worldCategory
         self.addChild(ground)
         
+        //give time the file to finish writting
+        let timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { (timer) in
+            let file = "runtime.txt"
+            if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+
+                let fileURL = dir.appendingPathComponent(file)
+                
+                //reading
+                do {
+                    let temp = try String(contentsOf: fileURL, encoding: .utf8)
+    //                print (temp)
+                    self.runtime = Int(temp)!
+                    print(self.runtime)
+                }
+                catch {/* error handling here */}
+            }
+        }
         
         
         // Initialize label and create a label which holds the score // turn this into the minute counter
@@ -223,14 +245,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
 
         
         // Initialize label and create a label which holds the score // turn this into the minute counter
-        score = 20
+        score = runtime
         scoreLabelNode = SKLabelNode(fontNamed:"MarkerFelt-Wide")
         scoreLabelNode.position = CGPoint( x: self.frame.midX, y: 3 * self.frame.size.height / 4 )
         scoreLabelNode.zPosition = 100
         scoreLabelNode.fontColor = SKColor.black
         scoreLabelNode.text = String(score)
         self.addChild(scoreLabelNode)
-        counter = score * 60
         
         
     }
@@ -367,18 +388,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
 //        moving.speed = 1
 //    }
     
-
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if moving.speed > 0  {
-            for _ in touches { // do we need all touches?
-                bird.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
-                bird.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 30))
-            }
-        }
-//        else if canRestart {
-//            self.resetScene()
+//
+//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+//        if moving.speed > 0  {
+////            for _ in touches { // do we need all touches?
+////                bird.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
+////                bird.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 30))
+////            }
 //        }
-    }
+////        else if canRestart {
+////            self.resetScene()
+////        }
+//    }
     
     override func update(_ currentTime: TimeInterval) {
         
@@ -386,9 +407,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         /* Called before each frame is rendered */
         let interval = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: starttime, to: Date())
         if(Int(interval.second!) == 0) {drawcircle()}
-        score = 20 - Int(interval.minute!)
+        score = runtime - Int(interval.minute!)
         scoreLabelNode.text = String(score)
-        
         
         var reading = 0
         let file = "reading.txt"
@@ -403,10 +423,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
                 var tempreading = Double(reading)
                 tempreading = tempreading - 70 //assuming base is 70 bps
                 if (tempreading > 100) {tempreading = 100}
+                if (tempreading < 0) {tempreading = 0}
                 //assume 170 as max heart rate
                 //170 is at height * 0.85
                 // 70 is at height * 0.35
-                // from 0.65 is range from 100 , 0.1 for every 20 bit, 0.005 per bps
+                // from 0.65 is range from 100 ,0.0065 pixel per bps
 
                 let heartrateposition = (0.0065*tempreading) + 0.25
 
@@ -433,6 +454,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
             catch {/* error handling here */}
         }
         
+        if (score < 1){
+            let scoreBoardTexture = SKSpriteNode(imageNamed: "scoreboard")
+            scoreBoardTexture.setScale(1.5)
+            scoreBoardTexture.position = CGPoint(x: self.frame.size.width/2, y:self.frame.size.height/2)
+            self.addChild(scoreBoardTexture)
+        }
         
     }
     

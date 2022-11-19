@@ -157,12 +157,43 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Od0-JA-syr">
-                                <rect key="frame" x="622" y="49" width="62" height="35"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t1g-ao-phh">
+                                <rect key="frame" x="546" y="49" width="74" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Start"/>
+                                <buttonConfiguration key="configuration" style="plain" title="15 Min"/>
                                 <connections>
+                                    <action selector="fifthteenmin:" destination="Tfl-22-L2E" eventType="touchUpInside" id="1P7-lt-OfJ"/>
+                                    <segue destination="Hl3-sK-x6R" kind="presentation" id="wf1-SB-rye"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TfC-aK-akm">
+                                <rect key="frame" x="476" y="49" width="74" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="10 Min"/>
+                                <connections>
+                                    <action selector="tenmin:" destination="Tfl-22-L2E" eventType="touchUpInside" id="P4a-hM-ocC"/>
+                                    <segue destination="Hl3-sK-x6R" kind="presentation" id="imr-gV-bRn"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kja-Se-7wi">
+                                <rect key="frame" x="410" y="49" width="67" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="5 Min"/>
+                                <connections>
+                                    <action selector="fivemin:" destination="Tfl-22-L2E" eventType="touchUpInside" id="rXs-C5-AZ2"/>
+                                    <segue destination="Hl3-sK-x6R" kind="presentation" id="3H5-kc-REK"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Od0-JA-syr">
+                                <rect key="frame" x="628" y="49" width="77" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="20 Min"/>
+                                <connections>
+                                    <action selector="twentymin:" destination="Tfl-22-L2E" eventType="touchUpInside" id="nWA-4i-5z9"/>
                                     <segue destination="Hl3-sK-x6R" kind="presentation" id="EGF-5G-AHr"/>
                                 </connections>
                             </button>
@@ -185,7 +216,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nO4-D8-oGU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1061.5999999999999" y="26.53673163418291"/>
+            <point key="canvasLocation" x="1061.1328125" y="25.78125"/>
         </scene>
         <!--Game View Controller-->
         <scene sceneID="mMw-OV-mPz">
@@ -222,4 +253,7 @@
             <point key="canvasLocation" x="1163" y="770"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="imr-gV-bRn"/>
+    </inferredMetricsTieBreakers>
 </document>

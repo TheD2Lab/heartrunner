@@ -20,6 +20,8 @@ class dataViewController: SchoscheViewController, UITableViewDelegate, UITableVi
     
     @IBOutlet var tableview: UITableView!
     
+    
+    
     // set cell type
     enum cellType {
         case normal
@@ -219,6 +221,82 @@ class dataViewController: SchoscheViewController, UITableViewDelegate, UITableVi
             cell.accessoryType = .disclosureIndicator
         }
         return cell
+    }
+    
+    
+    // setting run time
+    @IBAction func twentymin(_ sender: UIButton) {
+        let output = OutputStream.toMemory()
+        let filename = "runtime.txt"
+        let docurl = getDocumentsDirectory().appendingPathComponent(filename)
+        let csvWritter = CHCSVWriter(outputStream: output, encoding: String.Encoding.utf8.rawValue, delimiter:",".utf16.first!)
+        
+        csvWritter?.writeField("20")
+//        csvWritter?.finishLine()
+        
+        csvWritter?.closeStream()
+        
+        let buffer = (output.property(forKey: .dataWrittenToMemoryStreamKey) as? Data)!
+        do{
+            try buffer.write(to: docurl)
+        }catch{
+            
+        }
+    }
+    @IBAction func fifthteenmin(_ sender: UIButton) {
+        let output = OutputStream.toMemory()
+        let filename = "runtime.txt"
+        let docurl = getDocumentsDirectory().appendingPathComponent(filename)
+        let csvWritter = CHCSVWriter(outputStream: output, encoding: String.Encoding.utf8.rawValue, delimiter:",".utf16.first!)
+        
+        csvWritter?.writeField("15")
+//        csvWritter?.finishLine()
+        
+        csvWritter?.closeStream()
+        
+        let buffer = (output.property(forKey: .dataWrittenToMemoryStreamKey) as? Data)!
+        do{
+            try buffer.write(to: docurl)
+        }catch{
+            
+        }
+    }
+    @IBAction func tenmin(_ sender: UIButton) {
+        let output = OutputStream.toMemory()
+        let filename = "runtime.txt"
+        let docurl = getDocumentsDirectory().appendingPathComponent(filename)
+        let csvWritter = CHCSVWriter(outputStream: output, encoding: String.Encoding.utf8.rawValue, delimiter:",".utf16.first!)
+        
+        csvWritter?.writeField("10")
+//        csvWritter?.finishLine()
+        
+        csvWritter?.closeStream()
+        
+        let buffer = (output.property(forKey: .dataWrittenToMemoryStreamKey) as? Data)!
+        do{
+            try buffer.write(to: docurl)
+        }catch{
+            
+        }
+    }
+    
+    @IBAction func fivemin(_ sender: UIButton) {
+        let output = OutputStream.toMemory()
+        let filename = "runtime.txt"
+        let docurl = getDocumentsDirectory().appendingPathComponent(filename)
+        let csvWritter = CHCSVWriter(outputStream: output, encoding: String.Encoding.utf8.rawValue, delimiter:",".utf16.first!)
+        
+        csvWritter?.writeField("5")
+//        csvWritter?.finishLine()
+        
+        csvWritter?.closeStream()
+        
+        let buffer = (output.property(forKey: .dataWrittenToMemoryStreamKey) as? Data)!
+        do{
+            try buffer.write(to: docurl)
+        }catch{
+            
+        }
     }
     
 //    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
