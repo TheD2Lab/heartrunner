@@ -100,6 +100,7 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="FQT-i6-QTb" secondAttribute="trailing" constant="21" id="v5h-Ev-Ed0"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="ftQ-o8-gbj"/>
                     <connections>
                         <outlet property="tableview" destination="x5y-As-PQr" id="24t-ue-OoW"/>
                         <segue destination="Tfl-22-L2E" kind="show" identifier="gotoData" id="ct0-Pg-DcH"/>
@@ -107,7 +108,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="282" y="27"/>
+            <point key="canvasLocation" x="172" y="-5"/>
         </scene>
         <!--Data-->
         <scene sceneID="tRj-BA-cpu">
@@ -164,7 +165,7 @@
                                 <buttonConfiguration key="configuration" style="plain" title="15 Min"/>
                                 <connections>
                                     <action selector="fifthteenmin:" destination="Tfl-22-L2E" eventType="touchUpInside" id="1P7-lt-OfJ"/>
-                                    <segue destination="Hl3-sK-x6R" kind="presentation" id="wf1-SB-rye"/>
+                                    <segue destination="Hl3-sK-x6R" kind="presentation" id="QmP-Cy-qXL"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TfC-aK-akm">
@@ -174,7 +175,7 @@
                                 <buttonConfiguration key="configuration" style="plain" title="10 Min"/>
                                 <connections>
                                     <action selector="tenmin:" destination="Tfl-22-L2E" eventType="touchUpInside" id="P4a-hM-ocC"/>
-                                    <segue destination="Hl3-sK-x6R" kind="presentation" id="imr-gV-bRn"/>
+                                    <segue destination="Hl3-sK-x6R" kind="presentation" id="ATk-Qr-nv4"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kja-Se-7wi">
@@ -184,7 +185,7 @@
                                 <buttonConfiguration key="configuration" style="plain" title="5 Min"/>
                                 <connections>
                                     <action selector="fivemin:" destination="Tfl-22-L2E" eventType="touchUpInside" id="rXs-C5-AZ2"/>
-                                    <segue destination="Hl3-sK-x6R" kind="presentation" id="3H5-kc-REK"/>
+                                    <segue destination="Hl3-sK-x6R" kind="presentation" id="VMY-g1-HCR"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Od0-JA-syr">
@@ -194,7 +195,7 @@
                                 <buttonConfiguration key="configuration" style="plain" title="20 Min"/>
                                 <connections>
                                     <action selector="twentymin:" destination="Tfl-22-L2E" eventType="touchUpInside" id="nWA-4i-5z9"/>
-                                    <segue destination="Hl3-sK-x6R" kind="presentation" id="EGF-5G-AHr"/>
+                                    <segue destination="Hl3-sK-x6R" kind="presentation" id="Gs8-N6-Hnz"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -210,6 +211,7 @@
                             <constraint firstItem="ct9-H8-KEK" firstAttribute="trailing" secondItem="XIh-Ab-zFA" secondAttribute="trailing" id="vcM-3I-vsz"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="bM1-Q8-The"/>
                     <connections>
                         <outlet property="tableview" destination="ct9-H8-KEK" id="TdJ-s7-ZId"/>
                     </connections>
@@ -250,10 +252,42 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qdg-i1-uRV" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1163" y="770"/>
+            <point key="canvasLocation" x="1861" y="-5"/>
+        </scene>
+        <!--Scan-->
+        <scene sceneID="tfA-di-JcV">
+            <objects>
+                <viewController storyboardIdentifier="photochoose" title="Scan" id="MYs-Ir-ds9" customClass="cameraViewController" customModule="Demo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="naI-o3-saN">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose your avater" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r98-7h-NrJ">
+                                <rect key="frame" x="0.0" y="40" width="1024" height="21"/>
+                                <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="t6D-h0-911"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="GUj-dd-idL"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="r98-7h-NrJ" firstAttribute="top" secondItem="GUj-dd-idL" secondAttribute="top" constant="20" id="dAK-BH-vnw"/>
+                            <constraint firstItem="r98-7h-NrJ" firstAttribute="trailing" secondItem="GUj-dd-idL" secondAttribute="trailing" id="qbj-Z4-d3G"/>
+                            <constraint firstItem="r98-7h-NrJ" firstAttribute="leading" secondItem="GUj-dd-idL" secondAttribute="leading" id="ypv-TL-2DU"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2VR-yD-tuf" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-570.1171875" y="-5.46875"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="imr-gV-bRn"/>
+        <segue reference="Gs8-N6-Hnz"/>
     </inferredMetricsTieBreakers>
 </document>

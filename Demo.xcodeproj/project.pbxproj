@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		278C5590292CBEA8001E3858 /* cameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278C558F292CBEA8001E3858 /* cameraViewController.swift */; };
 		27A66A61291CEB3B00B94851 /* CHCSVParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A66A5F291CEB3B00B94851 /* CHCSVParser.m */; };
+		27DD53DB292ED209000BF6AF /* bird pictures in Resources */ = {isa = PBXBuildFile; fileRef = 27DD53DA292ED209000BF6AF /* bird pictures */; };
 		5A1CBD7328D7E7C8002EB74E /* bird.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 5A1CBD6F28D7E7C8002EB74E /* bird.atlas */; };
 		5A1CBD7428D7E7C8002EB74E /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A1CBD7028D7E7C8002EB74E /* GameScene.swift */; };
 		5A1CBD7528D7E7C8002EB74E /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A1CBD7128D7E7C8002EB74E /* GameViewController.swift */; };
@@ -41,9 +43,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		278C558F292CBEA8001E3858 /* cameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cameraViewController.swift; sourceTree = "<group>"; };
 		27A66A5E291CEB3A00B94851 /* Demo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Demo-Bridging-Header.h"; sourceTree = "<group>"; };
 		27A66A5F291CEB3B00B94851 /* CHCSVParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHCSVParser.m; sourceTree = "<group>"; };
 		27A66A60291CEB3B00B94851 /* CHCSVParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHCSVParser.h; sourceTree = "<group>"; };
+		27DD53DA292ED209000BF6AF /* bird pictures */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "bird pictures"; sourceTree = "<group>"; };
 		5A1CBD6F28D7E7C8002EB74E /* bird.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = bird.atlas; sourceTree = "<group>"; };
 		5A1CBD7028D7E7C8002EB74E /* GameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		5A1CBD7128D7E7C8002EB74E /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
@@ -109,12 +113,14 @@
 		984A1DE1221601A000FDCCC8 /* Demo */ = {
 			isa = PBXGroup;
 			children = (
+				27DD53DA292ED209000BF6AF /* bird pictures */,
 				C0DD74992910C88400B208E7 /* Music */,
 				5A1CBD7C28D81A73002EB74E /* GameScene.sks */,
 				984A1DE2221601A000FDCCC8 /* AppDelegate.swift */,
 				984A1DE4221601A000FDCCC8 /* scanViewController.swift */,
 				984A1DF422172ED600FDCCC8 /* dataViewController.swift */,
 				984A1DE6221601A000FDCCC8 /* Main.storyboard */,
+				278C558F292CBEA8001E3858 /* cameraViewController.swift */,
 				98C1C407221C8A650025E53F /* scanTableViewCell.swift */,
 				5A1CBD6F28D7E7C8002EB74E /* bird.atlas */,
 				5A1CBD7028D7E7C8002EB74E /* GameScene.swift */,
@@ -194,6 +200,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				27DD53DB292ED209000BF6AF /* bird pictures in Resources */,
 				C0DD749B2910C89A00B208E7 /* happyrock.mp3 in Resources */,
 				984A1DEA221601A100FDCCC8 /* Assets.xcassets in Resources */,
 				98D6152822C1646F005BD277 /* readme.md in Resources */,
@@ -211,6 +218,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5A1CBD7528D7E7C8002EB74E /* GameViewController.swift in Sources */,
+				278C5590292CBEA8001E3858 /* cameraViewController.swift in Sources */,
 				984A1DF522172ED600FDCCC8 /* dataViewController.swift in Sources */,
 				5A1CBD7428D7E7C8002EB74E /* GameScene.swift in Sources */,
 				984A1DE5221601A000FDCCC8 /* scanViewController.swift in Sources */,

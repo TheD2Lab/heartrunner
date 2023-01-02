@@ -8,7 +8,6 @@
 
 import UIKit
 import ScoscheSDK24
-import UIKit
 
 //DELAY
 func delay(_ seconds: Double, completion: @escaping () -> ()) {

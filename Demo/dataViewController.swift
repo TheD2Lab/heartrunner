@@ -10,7 +10,7 @@ import Foundation
 import ScoscheSDK24
 import CoreBluetooth
 import UIKit
-import SwiftUI
+//import SwiftUI
 
 /// dataViewController: Demo of connecting to a Scosche devices with BLE interface. View uses ScoscheViewController to extend a standard UIViewController with services that report monitor activity.
 ///
@@ -19,8 +19,6 @@ class dataViewController: SchoscheViewController, UITableViewDelegate, UITableVi
     //MARK:- IB Refs
     
     @IBOutlet var tableview: UITableView!
-    
-    
     
     // set cell type
     enum cellType {
@@ -41,13 +39,42 @@ class dataViewController: SchoscheViewController, UITableViewDelegate, UITableVi
 //    let dispatchQueue = DispatchQueue(label: "QueueIdentification", qos: .background)
     var readings: [Int] = []
     var temp: Int = 0
+    var filename: String = "reading"
+    
     
     //MARK:- Functions
+    func currentLocalTime() -> String {
+        var currentDate = Date()
+        // 1) Create a DateFormatter() object.
+        let format = DateFormatter()
+         
+        // 2) Set the current timezone to .current, or America/Chicago.
+        format.timeZone = .current
+         
+        // 3) Set the format of the altered date.
+        format.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+         
+        // 4) Set the current date, altered by timezone.
+        let dateString = format.string(from: currentDate)
+
+        return dateString
+    }
+    
+    func removeSpecialCharsFromString(text: String) -> String {
+        let okayChars : Set<Character> = Set("1234567890 ")
+        return String(text.filter {okayChars.contains($0) })
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         ScoscheDeviceConnect(monitor: monitor, monitorView: self)
         listData.append(cellRow(type: .normal, value: "Start Up: \(monitor.deviceName ?? "Unknown")"))
+        
+        //everytime this runs use a new file name with date
+        let timestamp = removeSpecialCharsFromString(text: "\(currentLocalTime())")
+        filename = "record \(timestamp).csv"
+        
     }
     
     func getDocumentsDirectory() -> URL {
@@ -62,7 +89,7 @@ class dataViewController: SchoscheViewController, UITableViewDelegate, UITableVi
     
     func CSVRecordFile(read: String){
         let output = OutputStream.toMemory()
-        let filename = "record.csv"
+//        let filename = filename
         let docurl = getDocumentsDirectory().appendingPathComponent(filename)
         let csvWritter = CHCSVWriter(outputStream: output, encoding: String.Encoding.utf8.rawValue, delimiter:",".utf16.first!)
         
@@ -70,7 +97,7 @@ class dataViewController: SchoscheViewController, UITableViewDelegate, UITableVi
         csvWritter?.writeField("timestamp")
         csvWritter?.finishLine()
         
-        let time = Date()
+        let time = currentLocalTime()
         
 
         heartratedata.append([read, "\(time)"])
@@ -94,8 +121,8 @@ class dataViewController: SchoscheViewController, UITableViewDelegate, UITableVi
     
     func CSVReadingFile(read: String){
         let stringToSave = "\(read)"
-        let filename = "reading.txt"
-        let path = getDocumentsDirectory().appendingPathComponent(filename)
+        let readingfilename = "reading.txt"
+        let path = getDocumentsDirectory().appendingPathComponent(readingfilename)
         if let stringData = stringToSave.data(using: .utf8) {
             try? stringData.write(to: path)
         }
@@ -204,24 +231,24 @@ class dataViewController: SchoscheViewController, UITableViewDelegate, UITableVi
     // setting run time
     @IBAction func twentymin(_ sender: UIButton) {
         let stringToSave = "20"
-        let filename = "runtime.txt"
-        let path = getDocumentsDirectory().appendingPathComponent(filename)
+        let runfilename = "runtime.txt"
+        let path = getDocumentsDirectory().appendingPathComponent(runfilename)
         if let stringData = stringToSave.data(using: .utf8) {
             try? stringData.write(to: path)
         }
     }
     @IBAction func fifthteenmin(_ sender: UIButton) {
         let stringToSave = "15"
-        let filename = "runtime.txt"
-        let path = getDocumentsDirectory().appendingPathComponent(filename)
+        let runfilename = "runtime.txt"
+        let path = getDocumentsDirectory().appendingPathComponent(runfilename)
         if let stringData = stringToSave.data(using: .utf8) {
             try? stringData.write(to: path)
         }
     }
     @IBAction func tenmin(_ sender: UIButton) {
         let stringToSave = "10"
-        let filename = "runtime.txt"
-        let path = getDocumentsDirectory().appendingPathComponent(filename)
+        let runfilename = "runtime.txt"
+        let path = getDocumentsDirectory().appendingPathComponent(runfilename)
         if let stringData = stringToSave.data(using: .utf8) {
             try? stringData.write(to: path)
         }
@@ -229,8 +256,8 @@ class dataViewController: SchoscheViewController, UITableViewDelegate, UITableVi
     
     @IBAction func fivemin(_ sender: UIButton) {
         let stringToSave = "1"
-        let filename = "runtime.txt"
-        let path = getDocumentsDirectory().appendingPathComponent(filename)
+        let runfilename = "runtime.txt"
+        let path = getDocumentsDirectory().appendingPathComponent(runfilename)
         if let stringData = stringToSave.data(using: .utf8) {
             try? stringData.write(to: path)
         }
