@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="MYs-Ir-ds9">
     <device id="ipad9_7" orientation="landscape" layout="fullscreen" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -262,7 +262,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose your avater" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r98-7h-NrJ">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Make your avater" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r98-7h-NrJ">
                                 <rect key="frame" x="0.0" y="40" width="1024" height="21"/>
                                 <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -272,15 +272,41 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2Ze-1V-sER">
+                                <rect key="frame" x="20" y="81" width="984" height="612"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VQY-kl-b5P">
+                                <rect key="frame" x="30" y="713" width="964" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="Rlb-ke-0v3"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                <connections>
+                                    <action selector="didTapButton" destination="MYs-Ir-ds9" eventType="touchUpInside" id="U0b-dZ-Wrw"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="GUj-dd-idL"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="VQY-kl-b5P" firstAttribute="top" secondItem="2Ze-1V-sER" secondAttribute="bottom" constant="20" id="02x-BH-dnJ"/>
+                            <constraint firstItem="GUj-dd-idL" firstAttribute="trailing" secondItem="2Ze-1V-sER" secondAttribute="trailing" constant="20" id="5Cg-pN-Fn8"/>
+                            <constraint firstItem="2Ze-1V-sER" firstAttribute="leading" secondItem="GUj-dd-idL" secondAttribute="leading" constant="20" id="ImJ-Je-TIW"/>
+                            <constraint firstItem="GUj-dd-idL" firstAttribute="bottom" secondItem="VQY-kl-b5P" secondAttribute="bottom" constant="20" id="Q8h-kc-Rj0"/>
+                            <constraint firstItem="GUj-dd-idL" firstAttribute="trailing" secondItem="VQY-kl-b5P" secondAttribute="trailing" constant="30" id="W0d-FJ-jdI"/>
+                            <constraint firstItem="2Ze-1V-sER" firstAttribute="top" secondItem="r98-7h-NrJ" secondAttribute="bottom" constant="20" id="aop-hR-O9m"/>
                             <constraint firstItem="r98-7h-NrJ" firstAttribute="top" secondItem="GUj-dd-idL" secondAttribute="top" constant="20" id="dAK-BH-vnw"/>
+                            <constraint firstItem="VQY-kl-b5P" firstAttribute="leading" secondItem="GUj-dd-idL" secondAttribute="leading" constant="30" id="fik-jr-Zxl"/>
+                            <constraint firstItem="VQY-kl-b5P" firstAttribute="top" secondItem="2Ze-1V-sER" secondAttribute="bottom" constant="20" id="nLr-6O-QQS"/>
                             <constraint firstItem="r98-7h-NrJ" firstAttribute="trailing" secondItem="GUj-dd-idL" secondAttribute="trailing" id="qbj-Z4-d3G"/>
                             <constraint firstItem="r98-7h-NrJ" firstAttribute="leading" secondItem="GUj-dd-idL" secondAttribute="leading" id="ypv-TL-2DU"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="button" destination="VQY-kl-b5P" id="VXM-Mv-UOy"/>
+                        <outlet property="imageView" destination="2Ze-1V-sER" id="tKs-rL-N68"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2VR-yD-tuf" sceneMemberID="firstResponder"/>
             </objects>

@@ -141,66 +141,66 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         bird.physicsBody?.contactTestBitMask = worldCategory | pipeCategory
         
         self.addChild(bird)
-        
-        // blue line and mark
-        var tempreading = Double(110) // using expexted heart rate
-        tempreading = tempreading - 70 //assuming base is 70 bps
-        if (tempreading > 100) {tempreading = 100}
-        if (tempreading < 0) {tempreading = 0}
-        //assume 170 as max heart rate
-        //170 is at height * 0.85
-        // 70 is at height * 0.35
-        // from 0.65 is range from 100 ,0.0065 pixel per bps
-
-        var heartrateposition = (0.0065*tempreading) + 0.25
-        
-       
-        var blueline = SKShapeNode()
-        var pathToDraw = CGMutablePath()
-        pathToDraw.move(to: CGPoint(x: self.frame.size.width * heartrateposition, y: self.frame.size.width * 0.5 ))
-        pathToDraw.addLine(to: CGPoint(x: self.frame.size.width * heartrateposition, y: self.frame.size.width * 0.22))
-        blueline.path = pathToDraw
-        blueline.zPosition = 90
-        blueline.strokeColor = SKColor.blue
-        addChild(blueline)
-        
-        
-        // orange line and mark
-        tempreading = Double(130) // using expexted heart rate
-        tempreading = tempreading - 70 //assuming base is 70 bps
-        if (tempreading > 100) {tempreading = 100}
-        if (tempreading < 0) {tempreading = 0}
-
-        heartrateposition = (0.0065*tempreading) + 0.25
-        
-        
-        var orangeline = SKShapeNode()
-        pathToDraw = CGMutablePath()
-        pathToDraw.move(to: CGPoint(x: self.frame.size.width * heartrateposition, y: self.frame.size.width * 0.5 ))
-        pathToDraw.addLine(to: CGPoint(x: self.frame.size.width * heartrateposition, y: self.frame.size.width * 0.22))
-        orangeline.path = pathToDraw
-        orangeline.zPosition = 90
-        orangeline.strokeColor = SKColor.orange
-        addChild(orangeline)
-        
-        
-        // red line and mark
-        tempreading = Double(150) // using expexted heart rate
-        tempreading = tempreading - 70 //assuming base is 70 bps
-        if (tempreading > 100) {tempreading = 100}
-        if (tempreading < 0) {tempreading = 0}
-
-        heartrateposition = (0.0065*tempreading) + 0.25
-        
-        
-        var redline = SKShapeNode()
-        pathToDraw = CGMutablePath()
-        pathToDraw.move(to: CGPoint(x: self.frame.size.width * heartrateposition, y: self.frame.size.width * 0.5 ))
-        pathToDraw.addLine(to: CGPoint(x: self.frame.size.width * heartrateposition, y: self.frame.size.width * 0.22))
-        redline.path = pathToDraw
-        redline.zPosition = 90
-        redline.strokeColor = SKColor.red
-        addChild(redline)
+//
+//        // blue line and mark
+//        var tempreading = Double(110) // using expexted heart rate
+//        tempreading = tempreading - 70 //assuming base is 70 bps
+//        if (tempreading > 100) {tempreading = 100}
+//        if (tempreading < 0) {tempreading = 0}
+//        //assume 170 as max heart rate
+//        //170 is at height * 0.85
+//        // 70 is at height * 0.35
+//        // from 0.65 is range from 100 ,0.0065 pixel per bps
+//
+//        var heartrateposition = (0.0065*tempreading) + 0.25
+//
+//
+//        var blueline = SKShapeNode()
+//        var pathToDraw = CGMutablePath()
+//        pathToDraw.move(to: CGPoint(x: self.frame.size.width * heartrateposition, y: self.frame.size.width * 0.5 ))
+//        pathToDraw.addLine(to: CGPoint(x: self.frame.size.width * heartrateposition, y: self.frame.size.width * 0.22))
+//        blueline.path = pathToDraw
+//        blueline.zPosition = 90
+//        blueline.strokeColor = SKColor.blue
+//        addChild(blueline)
+//
+//
+//        // orange line and mark
+//        tempreading = Double(130) // using expexted heart rate
+//        tempreading = tempreading - 70 //assuming base is 70 bps
+//        if (tempreading > 100) {tempreading = 100}
+//        if (tempreading < 0) {tempreading = 0}
+//
+//        heartrateposition = (0.0065*tempreading) + 0.25
+//
+//
+//        var orangeline = SKShapeNode()
+//        pathToDraw = CGMutablePath()
+//        pathToDraw.move(to: CGPoint(x: self.frame.size.width * heartrateposition, y: self.frame.size.width * 0.5 ))
+//        pathToDraw.addLine(to: CGPoint(x: self.frame.size.width * heartrateposition, y: self.frame.size.width * 0.22))
+//        orangeline.path = pathToDraw
+//        orangeline.zPosition = 90
+//        orangeline.strokeColor = SKColor.orange
+//        addChild(orangeline)
+//
+//
+//        // red line and mark
+//        tempreading = Double(150) // using expexted heart rate
+//        tempreading = tempreading - 70 //assuming base is 70 bps
+//        if (tempreading > 100) {tempreading = 100}
+//        if (tempreading < 0) {tempreading = 0}
+//
+//        heartrateposition = (0.0065*tempreading) + 0.25
+//
+//
+//        var redline = SKShapeNode()
+//        pathToDraw = CGMutablePath()
+//        pathToDraw.move(to: CGPoint(x: self.frame.size.width * heartrateposition, y: self.frame.size.width * 0.5 ))
+//        pathToDraw.addLine(to: CGPoint(x: self.frame.size.width * heartrateposition, y: self.frame.size.width * 0.22))
+//        redline.path = pathToDraw
+//        redline.zPosition = 90
+//        redline.strokeColor = SKColor.red
+//        addChild(redline)
         
 //
 //        // setup our black bird
