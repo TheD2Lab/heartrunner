@@ -11,14 +11,19 @@ import AVFoundation
 
 
 class GameScene: SKScene, SKPhysicsContactDelegate{
-    let verticalPipeGap = 150.0
+//    let verticalPipeGap = 150.0
     
     
     var bird:SKSpriteNode!
 //    var blackbird:SKSpriteNode!
     var staticbird:SKSpriteNode!
 //    var staticblackbird:SKSpriteNode!
-    var skyColor:SKColor!
+    let skyColor = SKColor(red: 81.0/255.0, green: 192.0/255.0, blue: 201.0/255.0, alpha: 1.0)
+    let skyZoneOneColor = SKColor(red: 56.0/255.0, green: 61/255.0, blue: 63/255.0, alpha: 1.0)
+    let skyZoneTwoColor = SKColor(red: 14/255.0, green: 124/255.0, blue: 158/255.0, alpha: 1.0)
+    let skyZoneThreeColor = SKColor(red: 85.0/255.0, green: 163/255.0, blue: 34/255.0, alpha: 1.0)
+    let skyZoneFourColor = SKColor(red: 186/255.0, green: 138/255.0, blue: 5/255.0, alpha: 1.0)
+    let skyZoneFiveColor = SKColor(red: 178/255.0, green: 12/255.0, blue: 73/255.0, alpha: 1.0)
     var pipeTextureUp:SKTexture!
     var pipeTextureDown:SKTexture!
     var movePipesAndRemove:SKAction!
@@ -56,8 +61,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         self.physicsWorld.contactDelegate = self
         
         // setup background color
-        skyColor = SKColor(red: 81.0/255.0, green: 192.0/255.0, blue: 201.0/255.0, alpha: 1.0)
-        self.backgroundColor = skyColor
+//        skyColor = SKColor(red: 81.0/255.0, green: 192.0/255.0, blue: 201.0/255.0, alpha: 1.0)
+        self.backgroundColor = skyZoneOneColor
         
         moving = SKNode()
         self.addChild(moving)
@@ -531,14 +536,62 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
 //                blackbirdheartrate.text = String(temp)
                 
                 
-                //music trigger by heart rate
-                if reading > 90 && playing == false {
-                    musicstart()
-                    print("play music")
+                
+                // triggers based on heartrate
+                if reading < 80 {
+                    moving.speed = 1
                 }
-                if reading < 90 && playing == true{
-                    musicstop()
-                    print("stopped music")
+                if reading > 80 && reading < 90{
+                    if playing == false{
+                        musicstop()
+                    }
+                    moving.speed = 1.1
+                }
+                if reading > 90 && reading < 100{
+                    if playing == false{
+                        musicstart()
+                    }
+                    moving.speed = 1.2
+                }
+                if reading > 100 && reading < 110{
+                    moving.speed = 1.3
+                    self.backgroundColor = skyZoneOneColor
+                }
+                if reading > 110 && reading < 120{
+                    moving.speed = 1.5
+                    self.backgroundColor = skyZoneTwoColor
+                }
+                if reading > 120 && reading < 130{
+                    moving.speed = 1.7
+                    self.backgroundColor = skyZoneTwoColor
+                }
+                if reading > 130 && reading < 140{
+                    moving.speed = 1.85
+                    self.backgroundColor = skyZoneThreeColor
+                }
+                if reading > 140 && reading < 150{
+                    moving.speed = 2
+                    self.backgroundColor = skyZoneThreeColor
+                }
+                if reading > 150 && reading < 160{
+                    moving.speed = 2.2
+                    self.backgroundColor = skyZoneFourColor
+                }
+                if reading > 160 && reading < 170{
+                    moving.speed = 2.45
+                    self.backgroundColor = skyZoneFourColor
+                }
+                if reading > 170 && reading < 180{
+                    moving.speed = 2.65
+                    self.backgroundColor = skyZoneFiveColor
+                }
+                if reading > 180 && reading < 190{
+                    moving.speed = 2.8
+                    self.backgroundColor = skyZoneFiveColor
+                }
+                if reading > 190{
+                    moving.speed = 3
+                    self.backgroundColor = skyZoneFiveColor
                 }
             }
             catch {/* error handling here */}
@@ -594,7 +647,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
                 self.run(SKAction.sequence([SKAction.repeat(SKAction.sequence([SKAction.run({
                     self.backgroundColor = SKColor(red: 1, green: 0, blue: 0, alpha: 1.0)
                     }),SKAction.wait(forDuration: TimeInterval(0.05)), SKAction.run({
-                        self.backgroundColor = self.skyColor
+                        self.backgroundColor = self.skyZoneOneColor
                         }), SKAction.wait(forDuration: TimeInterval(0.05))]), count:4), SKAction.run({
                             self.canRestart = true
                             })]), withKey: "flash")

@@ -10,7 +10,7 @@ import UIKit
 import ScoscheSDK24
 //import CoreBluetooth
 import SpriteKit
-import AVFoundation
+//import AVFoundation
 
 
 extension SKNode {
@@ -38,7 +38,7 @@ class GameViewController: UIViewController {
     // setting up mute button
     @IBOutlet var muteButton: UIButton!
     
-    var player: AVAudioPlayer?
+//    var player: AVAudioPlayer?
     
     override func viewDidLoad() {
         super.viewDidLoad()

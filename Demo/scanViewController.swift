@@ -97,6 +97,7 @@ class scanViewController: SchoscheViewController, UITableViewDelegate, UITableVi
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         monitor = discoveredMonitors[indexPath.row]
 //        ScoscheDeviceStopScan(monitorView: self)
+        
         self.performSegue(withIdentifier: "gotoData", sender: nil)
     }
 }

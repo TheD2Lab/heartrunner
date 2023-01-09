@@ -231,24 +231,10 @@
                     <view key="view" contentMode="scaleToFill" id="r6h-dU-tKv" customClass="SKView">
                         <rect key="frame" x="0.0" y="0.0" width="704" height="728"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MMw-P6-94o">
-                                <rect key="frame" x="578" y="20" width="106" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Play Music"/>
-                                <connections>
-                                    <action selector="didTapButton" destination="Hl3-sK-x6R" eventType="touchUpInside" id="QHM-37-NeI"/>
-                                </connections>
-                            </button>
-                        </subviews>
                         <viewLayoutGuide key="safeArea" id="VT8-Ax-Snv"/>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="LPz-at-M4g"/>
-                    <connections>
-                        <outlet property="muteButton" destination="MMw-P6-94o" id="NbP-W1-fXU"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qdg-i1-uRV" sceneMemberID="firstResponder"/>
             </objects>
