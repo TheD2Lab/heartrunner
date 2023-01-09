@@ -178,24 +178,6 @@ class dataViewController: SchoscheViewController, UITableViewDelegate, UITableVi
 
     }
     
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "gotoWorkout" {
-//            if let destinationVC = segue.destination as? workoutViewController {
-//                destinationVC.fitFileList = fitFileList
-//            }
-//        }
-//        if segue.identifier == "gotoUser" {
-//            if let destinationVC = segue.destination as? userViewController {
-//                destinationVC.tempUserInfo = userInfo
-//
-//            }
-//        }
-//        if segue.identifier == "gotoMode" {
-//            if let destinationVC = segue.destination as? modeViewController {
-//                destinationVC.tempMode = sportMode
-//            }
-//        }
-//    }
     
     @IBAction func unwindToData(_ unwindSegue: UIStoryboardSegue) {
         print("Unwind to data view")
@@ -231,57 +213,32 @@ class dataViewController: SchoscheViewController, UITableViewDelegate, UITableVi
     // setting run time
     @IBAction func twentymin(_ sender: UIButton) {
         let stringToSave = "20"
-        let runfilename = "runtime.txt"
-        let path = getDocumentsDirectory().appendingPathComponent(runfilename)
-        if let stringData = stringToSave.data(using: .utf8) {
-            try? stringData.write(to: path)
-        }
+        writetoruntime(string: stringToSave)
     }
     @IBAction func fifthteenmin(_ sender: UIButton) {
         let stringToSave = "15"
-        let runfilename = "runtime.txt"
-        let path = getDocumentsDirectory().appendingPathComponent(runfilename)
-        if let stringData = stringToSave.data(using: .utf8) {
-            try? stringData.write(to: path)
-        }
+        writetoruntime(string: stringToSave)
     }
     @IBAction func tenmin(_ sender: UIButton) {
         let stringToSave = "10"
-        let runfilename = "runtime.txt"
-        let path = getDocumentsDirectory().appendingPathComponent(runfilename)
-        if let stringData = stringToSave.data(using: .utf8) {
-            try? stringData.write(to: path)
-        }
+        writetoruntime(string: stringToSave)
     }
     
     @IBAction func fivemin(_ sender: UIButton) {
         let stringToSave = "5"
-        let runfilename = "runtime.txt"
-        let path = getDocumentsDirectory().appendingPathComponent(runfilename)
-        if let stringData = stringToSave.data(using: .utf8) {
-            try? stringData.write(to: path)
-        }
+        writetoruntime(string: stringToSave)
     }
     
     @IBAction func blankmin(_ sender: UIButton) {
         let stringToSave = "0"
+        writetoruntime(string: stringToSave)
+    }
+    
+    func writetoruntime(string: String){
         let runfilename = "runtime.txt"
         let path = getDocumentsDirectory().appendingPathComponent(runfilename)
-        if let stringData = stringToSave.data(using: .utf8) {
+        if let stringData = string.data(using: .utf8) {
             try? stringData.write(to: path)
         }
     }
-    
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let row = listData[indexPath.row]
-//        if row.type == .fit {
-//           self.performSegue(withIdentifier: "gotoWorkout", sender: nil)
-//        }
-//        if row.type == .user {
-//            self.performSegue(withIdentifier: "gotoUser", sender: nil)
-//        }
-//        if row.type == .mode {
-//            self.performSegue(withIdentifier: "gotoMode", sender: nil)
-//        }
-//    }
 }

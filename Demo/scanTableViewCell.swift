@@ -16,7 +16,6 @@ class scanTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        //self.roundedCorners(top: false, size: 20.0)
     }
     
     func populate(){
