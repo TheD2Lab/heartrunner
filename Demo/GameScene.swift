@@ -547,56 +547,56 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
                     if playing == true{
                         musicstop()
                     }
-                    moving.speed = 1.1
+                    moving.speed = 1.25
                     self.backgroundColor = skyZoneOneColor
                 }
                 if reading > 90 && reading < 100{
                     if playing == false{
                         musicstart()
                     }
-                    moving.speed = 1.2
-                    self.backgroundColor = skyZoneTwoColor
-                }
-                if reading > 100 && reading < 110{
-                    moving.speed = 1.3
-                    self.backgroundColor = skyZoneTwoColor
-                }
-                if reading > 110 && reading < 120{
                     moving.speed = 1.5
                     self.backgroundColor = skyZoneTwoColor
                 }
-                if reading > 120 && reading < 130{
-                    moving.speed = 1.7
-                    self.backgroundColor = skyZoneThreeColor
-                }
-                if reading > 130 && reading < 140{
-                    moving.speed = 1.85
-                    self.backgroundColor = skyZoneThreeColor
-                }
-                if reading > 140 && reading < 150{
+                if reading > 100 && reading < 110{
                     moving.speed = 2
                     self.backgroundColor = skyZoneThreeColor
                 }
-                if reading > 150 && reading < 160{
-                    moving.speed = 2.2
-                    self.backgroundColor = skyZoneFourColor
-                }
-                if reading > 160 && reading < 170{
-                    moving.speed = 2.45
-                    self.backgroundColor = skyZoneFourColor
-                }
-                if reading > 170 && reading < 180{
-                    moving.speed = 2.65
-                    self.backgroundColor = skyZoneFiveColor
-                }
-                if reading > 180 && reading < 190{
-                    moving.speed = 2.8
-                    self.backgroundColor = skyZoneFiveColor
-                }
-                if reading > 190{
+                if reading > 110 && reading < 120{
                     moving.speed = 3
+                    self.backgroundColor = skyZoneFourColor
+                }
+                if reading > 120 && reading < 130{
+                    moving.speed = 4
                     self.backgroundColor = skyZoneFiveColor
                 }
+//                if reading > 130 && reading < 140{
+//                    moving.speed = 1.85
+//                    self.backgroundColor = skyZoneThreeColor
+//                }
+//                if reading > 140 && reading < 150{
+//                    moving.speed = 2
+//                    self.backgroundColor = skyZoneThreeColor
+//                }
+//                if reading > 150 && reading < 160{
+//                    moving.speed = 2.2
+//                    self.backgroundColor = skyZoneFourColor
+//                }
+//                if reading > 160 && reading < 170{
+//                    moving.speed = 2.45
+//                    self.backgroundColor = skyZoneFourColor
+//                }
+//                if reading > 170 && reading < 180{
+//                    moving.speed = 2.65
+//                    self.backgroundColor = skyZoneFiveColor
+//                }
+//                if reading > 180 && reading < 190{
+//                    moving.speed = 2.8
+//                    self.backgroundColor = skyZoneFiveColor
+//                }
+//                if reading > 190{
+//                    moving.speed = 3
+//                    self.backgroundColor = skyZoneFiveColor
+//                }
             }
             catch {/* error handling here */}
         }

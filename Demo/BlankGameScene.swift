@@ -323,18 +323,18 @@ class BlankGameScene: SKScene, SKPhysicsContactDelegate{
         // Initialize label and create a label which holds the score // turn this into the minute counter
 //
         // draw clock circle
-        drawcircle()
+//        drawcircle()
 
         
         // Initialize label and create a label which holds the score // turn this into the minute counter
-        score = runtime
-        scoreLabelNode = SKLabelNode(fontNamed:"MarkerFelt-Wide")
-        scoreLabelNode.position = CGPoint( x: self.frame.midX, y: self.frame.midY - 30 )
-        scoreLabelNode.zPosition = 100
-        scoreLabelNode.fontColor = SKColor.black
-        scoreLabelNode.setScale(4)
-        scoreLabelNode.text = String(score)
-        self.addChild(scoreLabelNode)
+//        score = runtime
+//        scoreLabelNode = SKLabelNode(fontNamed:"MarkerFelt-Wide")
+//        scoreLabelNode.position = CGPoint( x: self.frame.midX, y: self.frame.midY - 30 )
+//        scoreLabelNode.zPosition = 100
+//        scoreLabelNode.fontColor = SKColor.black
+//        scoreLabelNode.setScale(4)
+//        scoreLabelNode.text = String(score)
+//        self.addChild(scoreLabelNode)
         
         
     }
@@ -492,7 +492,7 @@ class BlankGameScene: SKScene, SKPhysicsContactDelegate{
         let interval = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: starttime, to: Date())
         if(Int(interval.second!) == 0) {drawcircle()}
         score = runtime - Int(interval.minute!)
-        scoreLabelNode.text = String(score)
+//        scoreLabelNode.text = String(score)
         
 //        var reading = 0
 //        let file = "reading.txt"
