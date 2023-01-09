@@ -44,7 +44,7 @@ class dataViewController: SchoscheViewController, UITableViewDelegate, UITableVi
     
     //MARK:- Functions
     func currentLocalTime() -> String {
-        var currentDate = Date()
+        let currentDate = Date()
         // 1) Create a DateFormatter() object.
         let format = DateFormatter()
          

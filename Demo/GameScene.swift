@@ -113,23 +113,30 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
 //        let spawnThenDelayForever = SKAction.repeatForever(spawnThenDelay)
 //        self.run(spawnThenDelayForever)
         
+
+        let fileURL = getDocumentsDirectory().appendingPathComponent("avatar.png")
+        let data = try! Data.init(contentsOf: fileURL)
+        let photo = UIImage.init(data: data)
+        let avatar = SKTexture(image: photo!)
+        
+        
         // setup our bird
-        let birdTexture1 = SKTexture(imageNamed: "bird-01")
-        birdTexture1.filteringMode = .nearest
-        let birdTexture2 = SKTexture(imageNamed: "bird-02")
-        birdTexture2.filteringMode = .nearest
-        let birdTexture3 = SKTexture(imageNamed: "bird-03")
-        birdTexture3.filteringMode = .nearest
-        let birdTexture4 = SKTexture(imageNamed: "bird-04")
-        birdTexture4.filteringMode = .nearest
-        
-        let anim = SKAction.animate(with: [birdTexture1, birdTexture2, birdTexture3, birdTexture4], timePerFrame: 0.2)
-        let flap = SKAction.repeatForever(anim)
-        
-        bird = SKSpriteNode(texture: birdTexture1)
-        bird.setScale(2.0)
+//        let birdTexture1 = SKTexture(imageNamed: "bird-01")
+//        birdTexture1.filteringMode = .nearest
+//        let birdTexture2 = SKTexture(imageNamed: "bird-02")
+//        birdTexture2.filteringMode = .nearest
+//        let birdTexture3 = SKTexture(imageNamed: "bird-03")
+//        birdTexture3.filteringMode = .nearest
+//        let birdTexture4 = SKTexture(imageNamed: "bird-04")
+//        birdTexture4.filteringMode = .nearest
+//
+//        let anim = SKAction.animate(with: [birdTexture1, birdTexture2, birdTexture3, birdTexture4], timePerFrame: 0.2)
+//        let flap = SKAction.repeatForever(anim)
+//        bird.run(flap)
+        bird = SKSpriteNode(texture: avatar)
+        bird.setScale(1.0)
         bird.position = CGPoint(x: self.frame.size.width * 0.25, y:self.frame.size.height * 0.5)
-        bird.run(flap)
+        
         
         
         bird.physicsBody = SKPhysicsBody(circleOfRadius: bird.size.height / 2.0)
@@ -241,8 +248,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         scoreBoardTexture.position = CGPoint(x: self.frame.size.width * 0.50, y:self.frame.size.height * 0.95)
         self.addChild(scoreBoardTexture)
         
-        staticbird =  SKSpriteNode(texture: birdTexture1)
-        staticbird.setScale(2.0)
+        staticbird =  SKSpriteNode(texture: avatar)
+        staticbird.setScale(1.0)
         staticbird.zPosition = 100
         staticbird.position = CGPoint(x: self.frame.size.width * 0.30, y:self.frame.size.height * 0.92)
         self.addChild(staticbird)
@@ -578,4 +585,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
             }
         }
     }
+    
+    
+    
+    func getDocumentsDirectory() -> URL {
+        // find all possible documents directories for this user
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+
+        // just send back the first one, which ought to be the only one
+        return paths[0]
+    }
+
 }

@@ -13,18 +13,18 @@
             <objects>
                 <viewController storyboardIdentifier="scan" title="Scan" id="BYZ-38-t0r" customClass="scanViewController" customModule="Demo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <rect key="frame" x="0.0" y="0.0" width="704" height="728"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="57" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="x5y-As-PQr">
-                                <rect key="frame" x="0.0" y="100" width="1024" height="668"/>
+                                <rect key="frame" x="0.0" y="80" width="704" height="648"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="scancell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="57" id="rpF-dM-ssW" customClass="scanTableViewCell" customModule="Demo" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="50" width="1024" height="57"/>
+                                        <rect key="frame" x="0.0" y="50" width="704" height="57"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="scanCell" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="rpF-dM-ssW" id="X79-4F-1YN">
-                                            <rect key="frame" x="0.0" y="0.0" width="1024" height="57"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="704" height="57"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DQR-gc-n3O">
@@ -41,10 +41,10 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="blankcell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="blankcell" rowHeight="57" id="a8A-AB-qHV">
-                                        <rect key="frame" x="0.0" y="107" width="1024" height="57"/>
+                                        <rect key="frame" x="0.0" y="107" width="704" height="57"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="a8A-AB-qHV" id="dhF-oa-l3f">
-                                            <rect key="frame" x="0.0" y="0.0" width="1024" height="57"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="704" height="57"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="No Sensors found" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="05E-uE-YuG">
@@ -64,7 +64,7 @@
                                 </connections>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Scan for Devices" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XXk-Sn-7g7">
-                                <rect key="frame" x="0.0" y="40" width="1024" height="21"/>
+                                <rect key="frame" x="0.0" y="20" width="704" height="21"/>
                                 <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="bDS-RD-75h"/>
@@ -74,7 +74,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FQT-i6-QTb">
-                                <rect key="frame" x="955" y="62" width="48" height="30"/>
+                                <rect key="frame" x="635" y="42" width="48" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="sQA-hT-CT6"/>
                                 </constraints>
@@ -281,9 +281,9 @@
                                     <constraint firstAttribute="height" constant="35" id="Rlb-ke-0v3"/>
                                 </constraints>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Next"/>
                                 <connections>
-                                    <action selector="didTapButton" destination="MYs-Ir-ds9" eventType="touchUpInside" id="U0b-dZ-Wrw"/>
+                                    <segue destination="BYZ-38-t0r" kind="show" id="74Q-M4-Hqm"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -304,7 +304,6 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="button" destination="VQY-kl-b5P" id="VXM-Mv-UOy"/>
                         <outlet property="imageView" destination="2Ze-1V-sER" id="tKs-rL-N68"/>
                     </connections>
                 </viewController>
