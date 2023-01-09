@@ -198,6 +198,16 @@
                                     <segue destination="Hl3-sK-x6R" kind="presentation" id="Gs8-N6-Hnz"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gvI-KJ-A2Z">
+                                <rect key="frame" x="336" y="49" width="66" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Blank"/>
+                                <connections>
+                                    <action selector="blankmin:" destination="Tfl-22-L2E" eventType="touchUpInside" id="8al-ib-aNg"/>
+                                    <segue destination="0iD-Cw-C0y" kind="presentation" id="pa0-Tl-BLl"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="XIh-Ab-zFA"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -238,7 +248,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qdg-i1-uRV" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1861" y="-5"/>
+            <point key="canvasLocation" x="1869" y="26"/>
         </scene>
         <!--Scan-->
         <scene sceneID="tfA-di-JcV">
@@ -296,6 +306,26 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2VR-yD-tuf" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-570.1171875" y="-5.46875"/>
+        </scene>
+        <!--Blank Game View Controller-->
+        <scene sceneID="I1x-j0-ec0">
+            <objects>
+                <viewController id="0iD-Cw-C0y" customClass="BlankGameViewController" customModule="Demo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="f6J-T9-xf5"/>
+                        <viewControllerLayoutGuide type="bottom" id="60P-ik-8Wr"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="B2e-Tc-pEw" customClass="SKView">
+                        <rect key="frame" x="0.0" y="0.0" width="704" height="728"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="NC5-e4-6SU"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="UNV-kc-DYD"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4bn-tx-9GE" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1847" y="770"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

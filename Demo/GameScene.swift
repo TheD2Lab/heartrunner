@@ -56,6 +56,25 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         //disable touch
         UIApplication.shared.beginIgnoringInteractionEvents()
         
+        //give time the file to finish writting
+        let timer = Timer.scheduledTimer(withTimeInterval: 0.05, repeats: false) { (timer) in
+            let file = "runtime.txt"
+            if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+
+                let fileURL = dir.appendingPathComponent(file)
+                
+                //reading
+                do {
+                    let temp = try String(contentsOf: fileURL, encoding: .utf8)
+    //                print (temp)
+                    self.runtime = Int(temp)!
+                    print(self.runtime)
+                }
+                catch {/* error handling here */}
+            }
+        }
+        
+        
         // setup physics
         self.physicsWorld.gravity = CGVector( dx: 0.0, dy: 0.0 )
         self.physicsWorld.contactDelegate = self
@@ -299,24 +318,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         ground.physicsBody?.categoryBitMask = worldCategory
         self.addChild(ground)
         
-        //give time the file to finish writting
-        let timer = Timer.scheduledTimer(withTimeInterval: 0.05, repeats: false) { (timer) in
-            let file = "runtime.txt"
-            if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
-
-                let fileURL = dir.appendingPathComponent(file)
-                
-                //reading
-                do {
-                    let temp = try String(contentsOf: fileURL, encoding: .utf8)
-    //                print (temp)
-                    self.runtime = Int(temp)!
-                    print(self.runtime)
-                }
-                catch {/* error handling here */}
-            }
-        }
-        
         
         // Initialize label and create a label which holds the score // turn this into the minute counter
 //
@@ -540,22 +541,25 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
                 // triggers based on heartrate
                 if reading < 80 {
                     moving.speed = 1
+                    self.backgroundColor = skyZoneOneColor
                 }
                 if reading > 80 && reading < 90{
-                    if playing == false{
+                    if playing == true{
                         musicstop()
                     }
                     moving.speed = 1.1
+                    self.backgroundColor = skyZoneOneColor
                 }
                 if reading > 90 && reading < 100{
                     if playing == false{
                         musicstart()
                     }
                     moving.speed = 1.2
+                    self.backgroundColor = skyZoneTwoColor
                 }
                 if reading > 100 && reading < 110{
                     moving.speed = 1.3
-                    self.backgroundColor = skyZoneOneColor
+                    self.backgroundColor = skyZoneTwoColor
                 }
                 if reading > 110 && reading < 120{
                     moving.speed = 1.5
@@ -563,7 +567,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
                 }
                 if reading > 120 && reading < 130{
                     moving.speed = 1.7
-                    self.backgroundColor = skyZoneTwoColor
+                    self.backgroundColor = skyZoneThreeColor
                 }
                 if reading > 130 && reading < 140{
                     moving.speed = 1.85

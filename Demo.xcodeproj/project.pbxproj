@@ -7,9 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		275005DE296BD6C40027244E /* BlankGameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275005DC296BD6C30027244E /* BlankGameScene.swift */; };
+		275005DF296BD6C40027244E /* BlankGameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 275005DD296BD6C30027244E /* BlankGameScene.sks */; };
 		278C5590292CBEA8001E3858 /* cameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278C558F292CBEA8001E3858 /* cameraViewController.swift */; };
 		27A66A61291CEB3B00B94851 /* CHCSVParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A66A5F291CEB3B00B94851 /* CHCSVParser.m */; };
 		27DD53DB292ED209000BF6AF /* bird pictures in Resources */ = {isa = PBXBuildFile; fileRef = 27DD53DA292ED209000BF6AF /* bird pictures */; };
+		27EC7DAC296C0BF50090A2DF /* BlankGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27EC7DAB296C0BF50090A2DF /* BlankGameViewController.swift */; };
 		5A1CBD7328D7E7C8002EB74E /* bird.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 5A1CBD6F28D7E7C8002EB74E /* bird.atlas */; };
 		5A1CBD7428D7E7C8002EB74E /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A1CBD7028D7E7C8002EB74E /* GameScene.swift */; };
 		5A1CBD7528D7E7C8002EB74E /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A1CBD7128D7E7C8002EB74E /* GameViewController.swift */; };
@@ -43,11 +46,14 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		275005DC296BD6C30027244E /* BlankGameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlankGameScene.swift; sourceTree = "<group>"; };
+		275005DD296BD6C30027244E /* BlankGameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BlankGameScene.sks; sourceTree = "<group>"; };
 		278C558F292CBEA8001E3858 /* cameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cameraViewController.swift; sourceTree = "<group>"; };
 		27A66A5E291CEB3A00B94851 /* Demo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Demo-Bridging-Header.h"; sourceTree = "<group>"; };
 		27A66A5F291CEB3B00B94851 /* CHCSVParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHCSVParser.m; sourceTree = "<group>"; };
 		27A66A60291CEB3B00B94851 /* CHCSVParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHCSVParser.h; sourceTree = "<group>"; };
 		27DD53DA292ED209000BF6AF /* bird pictures */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "bird pictures"; sourceTree = "<group>"; };
+		27EC7DAB296C0BF50090A2DF /* BlankGameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlankGameViewController.swift; sourceTree = "<group>"; };
 		5A1CBD6F28D7E7C8002EB74E /* bird.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = bird.atlas; sourceTree = "<group>"; };
 		5A1CBD7028D7E7C8002EB74E /* GameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		5A1CBD7128D7E7C8002EB74E /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
@@ -117,6 +123,9 @@
 				C0DD74992910C88400B208E7 /* Music */,
 				5A1CBD7C28D81A73002EB74E /* GameScene.sks */,
 				984A1DE2221601A000FDCCC8 /* AppDelegate.swift */,
+				27EC7DAB296C0BF50090A2DF /* BlankGameViewController.swift */,
+				275005DD296BD6C30027244E /* BlankGameScene.sks */,
+				275005DC296BD6C30027244E /* BlankGameScene.swift */,
 				984A1DE4221601A000FDCCC8 /* scanViewController.swift */,
 				984A1DF422172ED600FDCCC8 /* dataViewController.swift */,
 				984A1DE6221601A000FDCCC8 /* Main.storyboard */,
@@ -201,6 +210,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				27DD53DB292ED209000BF6AF /* bird pictures in Resources */,
+				275005DF296BD6C40027244E /* BlankGameScene.sks in Resources */,
 				C0DD749B2910C89A00B208E7 /* happyrock.mp3 in Resources */,
 				984A1DEA221601A100FDCCC8 /* Assets.xcassets in Resources */,
 				98D6152822C1646F005BD277 /* readme.md in Resources */,
@@ -218,6 +228,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				5A1CBD7528D7E7C8002EB74E /* GameViewController.swift in Sources */,
+				27EC7DAC296C0BF50090A2DF /* BlankGameViewController.swift in Sources */,
+				275005DE296BD6C40027244E /* BlankGameScene.swift in Sources */,
 				278C5590292CBEA8001E3858 /* cameraViewController.swift in Sources */,
 				984A1DF522172ED600FDCCC8 /* dataViewController.swift in Sources */,
 				5A1CBD7428D7E7C8002EB74E /* GameScene.swift in Sources */,
@@ -409,7 +421,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.npe-inc.DemoSdk24-dennis1";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.npe-inc.DemoSdk24-dennis2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Demo-Bridging-Header.h";

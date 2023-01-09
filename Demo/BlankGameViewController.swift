@@ -7,15 +7,15 @@
 //
 
 import UIKit
-import ScoscheSDK24
+//import ScoscheSDK24
 //import CoreBluetooth
 import SpriteKit
 //import AVFoundation
 
 
 extension SKNode {
-    class func unarchiveFromFile(_ file : String) -> SKNode? {
-        
+    class func blankunarchiveFromFile(_ file : String) -> SKNode? {
+
         let path =  Bundle.main.path(forResource: file, ofType: "sks")
 
         let sceneData: Data?
@@ -25,25 +25,26 @@ extension SKNode {
             sceneData = nil
         }
         let archiver = NSKeyedUnarchiver(forReadingWith: sceneData!)
-        
+
         archiver.setClass(self.classForKeyedUnarchiver(), forClassName: "SKScene")
-        let scene = archiver.decodeObject(forKey: NSKeyedArchiveRootObjectKey) as! GameScene
+        let scene = archiver.decodeObject(forKey: NSKeyedArchiveRootObjectKey) as! BlankGameScene
         archiver.finishDecoding()
         return scene
     }
 }
 
-class GameViewController: UIViewController {
+class BlankGameViewController: UIViewController {
 
-    // setting up mute button
-    @IBOutlet var muteButton: UIButton!
     
 //    var player: AVAudioPlayer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let scene = GameScene.unarchiveFromFile("GameScene") as? GameScene {
+        if let scene = BlankGameScene.blankunarchiveFromFile("BlankGameScene") as? BlankGameScene {
+            print("blankview")
+            let path = Bundle.main.path(forResource: "BlankGameScene", ofType: "sks")
+            print(path)
             // Configure the view.
             let skView = self.view as! SKView
             skView.showsFPS = false

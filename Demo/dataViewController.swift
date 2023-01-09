@@ -255,7 +255,16 @@ class dataViewController: SchoscheViewController, UITableViewDelegate, UITableVi
     }
     
     @IBAction func fivemin(_ sender: UIButton) {
-        let stringToSave = "1"
+        let stringToSave = "5"
+        let runfilename = "runtime.txt"
+        let path = getDocumentsDirectory().appendingPathComponent(runfilename)
+        if let stringData = stringToSave.data(using: .utf8) {
+            try? stringData.write(to: path)
+        }
+    }
+    
+    @IBAction func blankmin(_ sender: UIButton) {
+        let stringToSave = "0"
         let runfilename = "runtime.txt"
         let path = getDocumentsDirectory().appendingPathComponent(runfilename)
         if let stringData = stringToSave.data(using: .utf8) {
