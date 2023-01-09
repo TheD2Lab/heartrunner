@@ -15,11 +15,10 @@ class cameraViewController: UIViewController  {
     @IBOutlet var button: UIButton!
     
     override func viewDidLoad() {
-        
+        super.viewDidLoad()
         imageView.backgroundColor = .secondarySystemBackground
-        delay(0.5){self.startcamera()}
+        delay(0.7){self.startcamera()}
         
-//        super.viewDidLoad()
         
     }
     

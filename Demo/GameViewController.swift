@@ -8,7 +8,7 @@
 
 import UIKit
 import ScoscheSDK24
-import CoreBluetooth
+//import CoreBluetooth
 import SpriteKit
 import AVFoundation
 
@@ -60,42 +60,46 @@ class GameViewController: UIViewController {
         }
     }
     
-    // changes mute button when tapped
-    @IBAction func didTapButton() {
-        if let player = player, player.isPlaying {
-            //stop playback
-            muteButton.setTitle("Play Music", for: .normal)
-            
-            player.stop()
-        } else {
-            //set up player and play
-            muteButton.setTitle("Stop Music", for: .normal)
-            let urlString = Bundle.main.path(forResource: "happyrock", ofType: "mp3")
-            do {
-                try AVAudioSession.sharedInstance().setMode(.default)
-                try AVAudioSession.sharedInstance().setActive(true, options: .notifyOthersOnDeactivation)
-                
-                guard let urlString = urlString else {
-                    return
-                }
-                
-                player = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: urlString))
-                
-                guard let player = player else {
-                    return
-                }
-                
-                player.play()
-                player.numberOfLoops = -1 // negative int -> loops continuously until stopped
-            } catch {
-                print("music player error")
-            }
-        }
-    }
+//    // changes mute button when tapped
+//    @IBAction func didTapButton() {
+//        musictrigger()
+//    }
 
     override var shouldAutorotate : Bool {
         return true
     }
+//
+//    func musictrigger(){
+//        if let player = player, player.isPlaying {
+//            //stop playback
+//            muteButton.setTitle("Play Music", for: .normal)
+//
+//            player.stop()
+//        } else {
+//            //set up player and play
+//            muteButton.setTitle("Stop Music", for: .normal)
+//            let urlString = Bundle.main.path(forResource: "happyrock", ofType: "mp3")
+//            do {
+//                try AVAudioSession.sharedInstance().setMode(.default)
+//                try AVAudioSession.sharedInstance().setActive(true, options: .notifyOthersOnDeactivation)
+//
+//                guard let urlString = urlString else {
+//                    return
+//                }
+//
+//                player = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: urlString))
+//
+//                guard let player = player else {
+//                    return
+//                }
+//
+//                player.play()
+//                player.numberOfLoops = -1 // negative int -> loops continuously until stopped
+//            } catch {
+//                print("music player error")
+//            }
+//        }
+//    }
 
     override var supportedInterfaceOrientations : UIInterfaceOrientationMask {
         if UIDevice.current.userInterfaceIdiom == .phone {
@@ -109,5 +113,6 @@ class GameViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Release any cached data, images, etc that aren't in use.
     }
+    
     
 }

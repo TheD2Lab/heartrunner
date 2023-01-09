@@ -7,6 +7,8 @@
 //
 
 import SpriteKit
+import AVFoundation
+
 
 class GameScene: SKScene, SKPhysicsContactDelegate{
     let verticalPipeGap = 150.0
@@ -33,6 +35,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
     
 //    var runtime = NSInteger()
     var runtime = 20
+    
+    var player: AVAudioPlayer?
+    var playing = false
     
     let birdCategory: UInt32 = 1 << 0
     let worldCategory: UInt32 = 1 << 1
@@ -524,6 +529,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
                 //update heart rate score
                 birdheartrate.text = String(temp)
 //                blackbirdheartrate.text = String(temp)
+                
+                
+                //music trigger by heart rate
+                if reading > 90 && playing == false {
+                    musicstart()
+                    print("play music")
+                }
+                if reading < 90 && playing == true{
+                    musicstop()
+                    print("stopped music")
+                }
             }
             catch {/* error handling here */}
         }
@@ -595,5 +611,42 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         // just send back the first one, which ought to be the only one
         return paths[0]
     }
-
+    
+    
+    func musicstop(){
+        if let player = player, player.isPlaying {
+            //stop playback
+//            muteButton.setTitle("Play Music", for: .normal)
+            
+            player.stop()
+            playing = false
+        }
+    }
+    
+    func musicstart(){
+        
+        //set up player and play
+//            muteButton.setTitle("Stop Music", for: .normal)
+        playing = true
+        let urlString = Bundle.main.path(forResource: "happyrock", ofType: "mp3")
+        do {
+            try AVAudioSession.sharedInstance().setMode(.default)
+            try AVAudioSession.sharedInstance().setActive(true, options: .notifyOthersOnDeactivation)
+            
+            guard let urlString = urlString else {
+                return
+            }
+            
+            player = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: urlString))
+            
+            guard let player = player else {
+                return
+            }
+            
+            player.play()
+            player.numberOfLoops = -1 // negative int -> loops continuously until stopped
+        } catch {
+            print("music player error")
+        }
+    }
 }
