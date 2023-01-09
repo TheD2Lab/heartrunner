@@ -490,7 +490,7 @@ class BlankGameScene: SKScene, SKPhysicsContactDelegate{
         
         /* Called before each frame is rendered */
         let interval = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: starttime, to: Date())
-        if(Int(interval.second!) == 0) {drawcircle()}
+//        if(Int(interval.second!) == 0) {drawcircle()}
         score = runtime - Int(interval.minute!)
 //        scoreLabelNode.text = String(score)
         
