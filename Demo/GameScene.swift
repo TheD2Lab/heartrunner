@@ -11,9 +11,13 @@ import AVFoundation
 
 
 class GameScene: SKScene, SKPhysicsContactDelegate{
+//    let verticalPipeGap = 150.0
+    
     
     var bird:SKSpriteNode!
+//    var blackbird:SKSpriteNode!
     var staticbird:SKSpriteNode!
+//    var staticblackbird:SKSpriteNode!
     let skyColor = SKColor(red: 81.0/255.0, green: 192.0/255.0, blue: 201.0/255.0, alpha: 1.0)
     let skyZoneOneColor = SKColor(red: 56.0/255.0, green: 61/255.0, blue: 63/255.0, alpha: 1.0)
     let skyZoneTwoColor = SKColor(red: 14/255.0, green: 124/255.0, blue: 158/255.0, alpha: 1.0)
@@ -28,11 +32,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
     var canRestart = Bool()
     var scoreLabelNode:SKLabelNode!
     var birdheartrate:SKLabelNode!
+//    var blackbirdheartrate:SKLabelNode!
     var score = NSInteger()
     var counter = NSInteger()
     let starttime = Date()
     var maxreading: Int = 0
     
+//    var runtime = NSInteger()
     var runtime = 20
     
     var player: AVAudioPlayer?
@@ -74,10 +80,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         self.physicsWorld.contactDelegate = self
         
         // setup background color
+//        skyColor = SKColor(red: 81.0/255.0, green: 192.0/255.0, blue: 201.0/255.0, alpha: 1.0)
         self.backgroundColor = skyZoneOneColor
         
         moving = SKNode()
         self.addChild(moving)
+//        pipes = SKNode()
+//        moving.addChild(pipes)
         
         // ground
         let groundTexture = SKTexture(imageNamed: "land")
@@ -114,6 +123,25 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
             moving.addChild(sprite)
         }
         
+        // create the pipes textures
+//        pipeTextureUp = SKTexture(imageNamed: "PipeUp")
+//        pipeTextureUp.filteringMode = .nearest
+//        pipeTextureDown = SKTexture(imageNamed: "PipeDown")
+//        pipeTextureDown.filteringMode = .nearest
+        
+        // create the pipes movement actions
+//        let distanceToMove = CGFloat(self.frame.size.width + 2.0 * pipeTextureUp.size().width)
+//        let movePipes = SKAction.moveBy(x: -distanceToMove, y:0.0, duration:TimeInterval(0.01 * distanceToMove))
+//        let removePipes = SKAction.removeFromParent()
+//        movePipesAndRemove = SKAction.sequence([movePipes, removePipes])
+//
+        // spawn the pipes
+//        let spawn = SKAction.run(spawnPipes)
+//        let delay = SKAction.wait(forDuration: TimeInterval(2.0))
+//        let spawnThenDelay = SKAction.sequence([spawn, delay])
+//        let spawnThenDelayForever = SKAction.repeatForever(spawnThenDelay)
+//        self.run(spawnThenDelayForever)
+        
 
         let fileURL = getDocumentsDirectory().appendingPathComponent("avatar.png")
         let data = try! Data.init(contentsOf: fileURL)
@@ -121,9 +149,24 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         let avatar = SKTexture(image: photo!)
         
         
+        // setup our bird
+//        let birdTexture1 = SKTexture(imageNamed: "bird-01")
+//        birdTexture1.filteringMode = .nearest
+//        let birdTexture2 = SKTexture(imageNamed: "bird-02")
+//        birdTexture2.filteringMode = .nearest
+//        let birdTexture3 = SKTexture(imageNamed: "bird-03")
+//        birdTexture3.filteringMode = .nearest
+//        let birdTexture4 = SKTexture(imageNamed: "bird-04")
+//        birdTexture4.filteringMode = .nearest
+//
+//        let anim = SKAction.animate(with: [birdTexture1, birdTexture2, birdTexture3, birdTexture4], timePerFrame: 0.2)
+//        let flap = SKAction.repeatForever(anim)
+//        bird.run(flap)
         bird = SKSpriteNode(texture: avatar)
         bird.setScale(1.0)
         bird.position = CGPoint(x: self.frame.size.width * 0.25, y:self.frame.size.height * 0.5)
+        
+        
         
         bird.physicsBody = SKPhysicsBody(circleOfRadius: bird.size.height / 2.0)
         bird.physicsBody?.isDynamic = true
@@ -134,6 +177,98 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         bird.physicsBody?.contactTestBitMask = worldCategory | pipeCategory
         
         self.addChild(bird)
+//
+//        // blue line and mark
+//        var tempreading = Double(110) // using expexted heart rate
+//        tempreading = tempreading - 70 //assuming base is 70 bps
+//        if (tempreading > 100) {tempreading = 100}
+//        if (tempreading < 0) {tempreading = 0}
+//        //assume 170 as max heart rate
+//        //170 is at height * 0.85
+//        // 70 is at height * 0.35
+//        // from 0.65 is range from 100 ,0.0065 pixel per bps
+//
+//        var heartrateposition = (0.0065*tempreading) + 0.25
+//
+//
+//        var blueline = SKShapeNode()
+//        var pathToDraw = CGMutablePath()
+//        pathToDraw.move(to: CGPoint(x: self.frame.size.width * heartrateposition, y: self.frame.size.width * 0.5 ))
+//        pathToDraw.addLine(to: CGPoint(x: self.frame.size.width * heartrateposition, y: self.frame.size.width * 0.22))
+//        blueline.path = pathToDraw
+//        blueline.zPosition = 90
+//        blueline.strokeColor = SKColor.blue
+//        addChild(blueline)
+//
+//
+//        // orange line and mark
+//        tempreading = Double(130) // using expexted heart rate
+//        tempreading = tempreading - 70 //assuming base is 70 bps
+//        if (tempreading > 100) {tempreading = 100}
+//        if (tempreading < 0) {tempreading = 0}
+//
+//        heartrateposition = (0.0065*tempreading) + 0.25
+//
+//
+//        var orangeline = SKShapeNode()
+//        pathToDraw = CGMutablePath()
+//        pathToDraw.move(to: CGPoint(x: self.frame.size.width * heartrateposition, y: self.frame.size.width * 0.5 ))
+//        pathToDraw.addLine(to: CGPoint(x: self.frame.size.width * heartrateposition, y: self.frame.size.width * 0.22))
+//        orangeline.path = pathToDraw
+//        orangeline.zPosition = 90
+//        orangeline.strokeColor = SKColor.orange
+//        addChild(orangeline)
+//
+//
+//        // red line and mark
+//        tempreading = Double(150) // using expexted heart rate
+//        tempreading = tempreading - 70 //assuming base is 70 bps
+//        if (tempreading > 100) {tempreading = 100}
+//        if (tempreading < 0) {tempreading = 0}
+//
+//        heartrateposition = (0.0065*tempreading) + 0.25
+//
+//
+//        var redline = SKShapeNode()
+//        pathToDraw = CGMutablePath()
+//        pathToDraw.move(to: CGPoint(x: self.frame.size.width * heartrateposition, y: self.frame.size.width * 0.5 ))
+//        pathToDraw.addLine(to: CGPoint(x: self.frame.size.width * heartrateposition, y: self.frame.size.width * 0.22))
+//        redline.path = pathToDraw
+//        redline.zPosition = 90
+//        redline.strokeColor = SKColor.red
+//        addChild(redline)
+        
+//
+//        // setup our black bird
+//        let blackbirdTexture1 = SKTexture(imageNamed: "bird-a")
+//        blackbirdTexture1.filteringMode = .nearest
+//        let blackbirdTexture2 = SKTexture(imageNamed: "bird-b")
+//        blackbirdTexture2.filteringMode = .nearest
+//        let blackbirdTexture3 = SKTexture(imageNamed: "bird-c")
+//        blackbirdTexture3.filteringMode = .nearest
+//        let blackbirdTexture4 = SKTexture(imageNamed: "bird-d")
+//        blackbirdTexture4.filteringMode = .nearest
+//
+//        let anim2 = SKAction.animate(with: [blackbirdTexture1, blackbirdTexture2, blackbirdTexture3, blackbirdTexture4], timePerFrame: 0.2)
+//        let flap2 = SKAction.repeatForever(anim2)
+//
+//        blackbird = SKSpriteNode(texture: blackbirdTexture1)
+//        blackbird.setScale(2.0)
+//        blackbird.position = CGPoint(x: self.frame.size.width * 0.25, y:self.frame.size.height * 0.5)
+//        blackbird.run(flap2)
+//
+//
+//        blackbird.physicsBody = SKPhysicsBody(circleOfRadius: blackbird.size.height / 2.0)
+//        blackbird.physicsBody?.isDynamic = true
+//        blackbird.physicsBody?.allowsRotation = false
+//
+//        blackbird.physicsBody?.categoryBitMask = birdCategory
+//        blackbird.physicsBody?.collisionBitMask = worldCategory | pipeCategory
+//        blackbird.physicsBody?.contactTestBitMask = worldCategory | pipeCategory
+//
+//        self.addChild(blackbird)
+        
+        
         
         //set heart rate board
         
@@ -151,12 +286,29 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         
         score = 70
         birdheartrate = SKLabelNode(fontNamed:"MarkerFelt-Wide")
+//        birdheartrate.color = SKColor(red: 0, green: 0, blue: 0, alpha: 1.0)
         birdheartrate.position = CGPoint(x: self.frame.size.width * 0.50, y:self.frame.size.height * 0.9)
         birdheartrate.zPosition = 100
         birdheartrate.fontColor = SKColor.black
         birdheartrate.text = String(score)
         self.addChild(birdheartrate)
-
+//
+//        staticblackbird =  SKSpriteNode(texture: blackbirdTexture1)
+//        staticblackbird.setScale(2.0)
+//        staticblackbird.zPosition = 100
+//        staticblackbird.position = CGPoint(x: self.frame.size.width * 0.6, y:self.frame.size.height * 0.92)
+//        self.addChild(staticblackbird)
+        
+//
+//        score = 70
+//        blackbirdheartrate = SKLabelNode(fontNamed:"MarkerFelt-Wide")
+////        blackbirdheartrate.color = SKColor(red: 0, green: 0, blue: 0, alpha: 1.0)
+//        blackbirdheartrate.position = CGPoint(x: self.frame.size.width * 0.7, y:self.frame.size.height * 0.9)
+//        blackbirdheartrate.zPosition = 100
+//        blackbirdheartrate.fontColor = SKColor.black
+//        blackbirdheartrate.text = String(score)
+//        self.addChild(blackbirdheartrate)
+//
         
         // create the ground
         let ground = SKNode()
@@ -237,6 +389,99 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
     }
 
     
+//    @objc func updateCounter() {
+//        //example functionality
+//        if counter > 0 {
+//   //         print("\(counter) seconds to the end of the world")
+//            counter -= 1
+//        }
+//    }
+    
+//
+//    func spawnPipes() {
+//        let pipePair = SKNode()
+//        pipePair.position = CGPoint( x: self.frame.size.width + pipeTextureUp.size().width * 2, y: 0 )
+//        pipePair.zPosition = -10
+//
+//        let height = UInt32( self.frame.size.height / 4)
+//        let y = Double(arc4random_uniform(height) + height)
+//
+//        let pipeDown = SKSpriteNode(texture: pipeTextureDown)
+//        pipeDown.setScale(2.0)
+//        pipeDown.position = CGPoint(x: 0.0, y: y + Double(pipeDown.size.height) + verticalPipeGap)
+//
+//
+//        pipeDown.physicsBody = SKPhysicsBody(rectangleOf: pipeDown.size)
+//        pipeDown.physicsBody?.isDynamic = false
+//        pipeDown.physicsBody?.categoryBitMask = pipeCategory
+//        pipeDown.physicsBody?.contactTestBitMask = birdCategory
+//        pipePair.addChild(pipeDown)
+//
+//        let pipeUp = SKSpriteNode(texture: pipeTextureUp)
+//        pipeUp.setScale(2.0)
+//        pipeUp.position = CGPoint(x: 0.0, y: y)
+//
+//        pipeUp.physicsBody = SKPhysicsBody(rectangleOf: pipeUp.size)
+//        pipeUp.physicsBody?.isDynamic = false
+//        pipeUp.physicsBody?.categoryBitMask = pipeCategory
+//        pipeUp.physicsBody?.contactTestBitMask = birdCategory
+//        pipePair.addChild(pipeUp)
+//
+//        let contactNode = SKNode()
+//        contactNode.position = CGPoint( x: pipeDown.size.width + bird.size.width / 2, y: self.frame.midY )
+//        contactNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize( width: pipeUp.size.width, height: self.frame.size.height ))
+//        contactNode.physicsBody?.isDynamic = false
+//        contactNode.physicsBody?.categoryBitMask = scoreCategory
+//        contactNode.physicsBody?.contactTestBitMask = birdCategory
+//        pipePair.addChild(contactNode)
+//
+//        pipePair.run(movePipesAndRemove)
+//        pipes.addChild(pipePair)
+//
+//    }
+//
+//    func resetScene (){
+//        // Move bird to original position and reset velocity
+//        bird.position = CGPoint(x: self.frame.size.width / 2.5, y: self.frame.midY)
+//        bird.physicsBody?.velocity = CGVector( dx: 0, dy: 0 )
+//        bird.physicsBody?.collisionBitMask = worldCategory | pipeCategory
+//        bird.speed = 1.0
+//        bird.zRotation = 0.0
+//
+//        // Move blackbird to original position and reset velocity
+//        blackbird.position = CGPoint(x: self.frame.size.width / 2.5, y: self.frame.midY)
+//        blackbird.physicsBody?.velocity = CGVector( dx: 0, dy: 0 )
+//        blackbird.physicsBody?.collisionBitMask = worldCategory | pipeCategory
+//        blackbird.speed = 1.0
+//        blackbird.zRotation = 0.0
+//
+//        // Remove all existing pipes
+//        pipes.removeAllChildren()
+//
+//        // Reset _canRestart
+//        canRestart = false
+//
+//        // Reset score
+//        score = 0
+//        scoreLabelNode.text = String(score)
+//
+//        // Restart animation
+//        moving.speed = 1
+//    }
+    
+//
+//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+//        if moving.speed > 0  {
+////            for _ in touches { // do we need all touches?
+////                bird.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
+////                bird.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 30))
+////            }
+//        }
+////        else if canRestart {
+////            self.resetScene()
+////        }
+//    }
+    
     override func update(_ currentTime: TimeInterval) {
         
         
@@ -273,9 +518,25 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
 
                 bird.position = CGPoint(x: self.frame.size.width * heartrateposition, y:self.frame.size.height * 0.5)
                 
+                //get the reading of the other device on cloud and use that reading for the heart rate postion calculator
+//                let temp = try String(contentsOf: fileURL, encoding: .utf8)
+//                reading = Int(temp)!
+//                var tempreading = Double(reading)
+//                tempreading = tempreading - 70
+//                print(tempreading)
+                //170 as max heart rate
+                //170 is at height * 0.85
+                // 70 is at height * 0.35
+                // from 0.5 is range from 100 , 0.1 for every 20 bit, 100/0.5
+//                let heartrateposition = (0.005*tempreading) + 0.35
+//                blackbird.position = CGPoint(x: self.frame.size.width * heartrateposition, y:self.frame.size.height * 0.5)
+                
                 
                 //update heart rate score
                 birdheartrate.text = String(temp)
+//                blackbirdheartrate.text = String(temp)
+                
+                
                 
                 // triggers based on heartrate
                 if reading < 80 {
@@ -308,6 +569,34 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
                     moving.speed = 4
                     self.backgroundColor = skyZoneFiveColor
                 }
+//                if reading > 130 && reading < 140{
+//                    moving.speed = 1.85
+//                    self.backgroundColor = skyZoneThreeColor
+//                }
+//                if reading > 140 && reading < 150{
+//                    moving.speed = 2
+//                    self.backgroundColor = skyZoneThreeColor
+//                }
+//                if reading > 150 && reading < 160{
+//                    moving.speed = 2.2
+//                    self.backgroundColor = skyZoneFourColor
+//                }
+//                if reading > 160 && reading < 170{
+//                    moving.speed = 2.45
+//                    self.backgroundColor = skyZoneFourColor
+//                }
+//                if reading > 170 && reading < 180{
+//                    moving.speed = 2.65
+//                    self.backgroundColor = skyZoneFiveColor
+//                }
+//                if reading > 180 && reading < 190{
+//                    moving.speed = 2.8
+//                    self.backgroundColor = skyZoneFiveColor
+//                }
+//                if reading > 190{
+//                    moving.speed = 3
+//                    self.backgroundColor = skyZoneFiveColor
+//                }
             }
             catch {/* error handling here */}
         }
@@ -340,6 +629,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
     func didBegin(_ contact: SKPhysicsContact) {
         
         if moving.speed > 0 && score > 0 {
+//            Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateCounter), userInfo: nil, repeats: true)
 
             if ( contact.bodyA.categoryBitMask & scoreCategory ) == scoreCategory || ( contact.bodyB.categoryBitMask & scoreCategory ) == scoreCategory {
                 // Bird has contact with score entity
@@ -382,6 +672,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
     
     func musicstop(){
         if let player = player, player.isPlaying {
+            //stop playback
+//            muteButton.setTitle("Play Music", for: .normal)
             
             player.stop()
             playing = false
@@ -391,6 +683,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
     func musicstart(){
         
         //set up player and play
+//            muteButton.setTitle("Stop Music", for: .normal)
         playing = true
         let urlString = Bundle.main.path(forResource: "happyrock", ofType: "mp3")
         do {

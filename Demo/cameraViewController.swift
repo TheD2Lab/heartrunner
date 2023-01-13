@@ -16,6 +16,7 @@ class cameraViewController: UIViewController  {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+//        imageView.backgroundColor = .secondarySystemBackground
         delay(0.7){self.startcamera()}
         
         
