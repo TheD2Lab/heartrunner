@@ -7,9 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2704711929711CFB00E7B1C3 /* ScoscheSDK24.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2704711829711CFB00E7B1C3 /* ScoscheSDK24.xcframework */; };
-		2704711A29711CFB00E7B1C3 /* ScoscheSDK24.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2704711829711CFB00E7B1C3 /* ScoscheSDK24.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		2741FC35296FCA1A009F91DE /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 985EA21F2565E0340095C78D /* CoreBluetooth.framework */; };
 		275005DE296BD6C40027244E /* BlankGameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275005DC296BD6C30027244E /* BlankGameScene.swift */; };
 		275005DF296BD6C40027244E /* BlankGameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 275005DD296BD6C30027244E /* BlankGameScene.sks */; };
 		278C5590292CBEA8001E3858 /* cameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278C558F292CBEA8001E3858 /* cameraViewController.swift */; };
@@ -25,27 +22,29 @@
 		984A1DE8221601A000FDCCC8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 984A1DE6221601A000FDCCC8 /* Main.storyboard */; };
 		984A1DEA221601A100FDCCC8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 984A1DE9221601A100FDCCC8 /* Assets.xcassets */; };
 		984A1DF522172ED600FDCCC8 /* dataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984A1DF422172ED600FDCCC8 /* dataViewController.swift */; };
+		985EA2202565E0340095C78D /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 985EA21F2565E0340095C78D /* CoreBluetooth.framework */; };
 		98C1C408221C8A650025E53F /* scanTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C1C407221C8A650025E53F /* scanTableViewCell.swift */; };
 		98D6152822C1646F005BD277 /* readme.md in Resources */ = {isa = PBXBuildFile; fileRef = 98D6152722C1646F005BD277 /* readme.md */; };
+		98E8E3B82784FB2B008F53F8 /* ScoscheSDK24.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98E8E3B62784FB23008F53F8 /* ScoscheSDK24.xcframework */; };
+		98E8E3B92784FB2B008F53F8 /* ScoscheSDK24.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 98E8E3B62784FB23008F53F8 /* ScoscheSDK24.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C0DD749B2910C89A00B208E7 /* happyrock.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C0DD749A2910C89A00B208E7 /* happyrock.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		2741FC32296FCA08009F91DE /* Embed Frameworks */ = {
+		986392FA2565EE5B00222C26 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 8;
+			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				2704711A29711CFB00E7B1C3 /* ScoscheSDK24.xcframework in Embed Frameworks */,
+				98E8E3B92784FB2B008F53F8 /* ScoscheSDK24.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 1;
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		2704711829711CFB00E7B1C3 /* ScoscheSDK24.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = ScoscheSDK24.xcframework; path = "../../../Downloads/ScoscheSDK24-master/ScoscheSDK24.xcframework"; sourceTree = "<group>"; };
 		275005DC296BD6C30027244E /* BlankGameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlankGameScene.swift; sourceTree = "<group>"; };
 		275005DD296BD6C30027244E /* BlankGameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BlankGameScene.sks; sourceTree = "<group>"; };
 		278C558F292CBEA8001E3858 /* cameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cameraViewController.swift; sourceTree = "<group>"; };
@@ -68,6 +67,7 @@
 		985EA21F2565E0340095C78D /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		98C1C407221C8A650025E53F /* scanTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = scanTableViewCell.swift; sourceTree = "<group>"; };
 		98D6152722C1646F005BD277 /* readme.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = readme.md; sourceTree = "<group>"; };
+		98E8E3B62784FB23008F53F8 /* ScoscheSDK24.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = ScoscheSDK24.xcframework; sourceTree = "<group>"; };
 		C0DD749A2910C89A00B208E7 /* happyrock.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = happyrock.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -76,8 +76,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2741FC35296FCA1A009F91DE /* CoreBluetooth.framework in Frameworks */,
-				2704711929711CFB00E7B1C3 /* ScoscheSDK24.xcframework in Frameworks */,
+				985EA2202565E0340095C78D /* CoreBluetooth.framework in Frameworks */,
+				98E8E3B82784FB2B008F53F8 /* ScoscheSDK24.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -87,8 +87,8 @@
 		7DF2BD49B090CEE01F7F087F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				2704711829711CFB00E7B1C3 /* ScoscheSDK24.xcframework */,
 				985EA21F2565E0340095C78D /* CoreBluetooth.framework */,
+				98E8E3B62784FB23008F53F8 /* ScoscheSDK24.xcframework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -156,7 +156,7 @@
 				984A1DDB221601A000FDCCC8 /* Sources */,
 				984A1DDC221601A000FDCCC8 /* Frameworks */,
 				984A1DDD221601A000FDCCC8 /* Resources */,
-				2741FC32296FCA08009F91DE /* Embed Frameworks */,
+				986392FA2565EE5B00222C26 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -377,18 +377,18 @@
 				CODE_SIGN_ENTITLEMENTS = Demo/Demo.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6T4G97C247;
+				DEVELOPMENT_TEAM = X98ASK9KM6;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = Demo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.npe-inc.DemoSdk24-dennis21";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.npe-inc.DemoSdk24-dennis1";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Demo-Bridging-Header.h";
@@ -406,18 +406,18 @@
 				CODE_SIGN_ENTITLEMENTS = Demo/Demo.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6T4G97C247;
+				DEVELOPMENT_TEAM = X98ASK9KM6;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = Demo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.npe-inc.DemoSdk24-dennis21";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.npe-inc.DemoSdk24-dennis5";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Demo-Bridging-Header.h";
