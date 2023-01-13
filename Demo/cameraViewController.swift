@@ -17,8 +17,6 @@ class cameraViewController: UIViewController  {
     override func viewDidLoad() {
         super.viewDidLoad()
         delay(0.7){self.startcamera()}
-        
-        
     }
     
     @IBAction func takepicture(_ sender: Any) {
