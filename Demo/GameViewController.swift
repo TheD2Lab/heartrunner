@@ -7,10 +7,7 @@
 //
 
 import UIKit
-import ScoscheSDK24
-//import CoreBluetooth
 import SpriteKit
-//import AVFoundation
 
 
 extension SKNode {
