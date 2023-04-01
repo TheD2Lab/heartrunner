@@ -9,7 +9,7 @@ This application requires
 (Limited to iPad at the moment, changable in .xcodeproj destination setting)
 
 
-### Install the application
+### Install the application onto ipad
 usually installing the application onto a device requires a lightnigh cable connected to the device physically.
 In Xcode, choose the device you want to install the application on to.
 <br>
