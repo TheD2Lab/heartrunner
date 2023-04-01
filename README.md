@@ -31,6 +31,10 @@ After successfully install, go to the iOS Device and General > VPN & Device Mana
 - GameScene.swift <br> - The actual code for visualization, reads reading file real time and submit data to update function. <br> didmove function - the screen setup  init<br>  update function - changes properties on screen real time.
 
 ------
+## After running the application
+Since all the data files are stored locally on the device, it requires to move the file to another permanant location like cloud to further process the data. 
+
+------
 ## Trouble Dhooting
 
 ### - Issue while installing
