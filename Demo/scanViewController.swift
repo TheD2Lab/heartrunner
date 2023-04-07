@@ -9,7 +9,7 @@
 import UIKit
 import ScoscheSDK24
 
-//DELAY
+/// DELAY function
 func delay(_ seconds: Double, completion: @escaping () -> ()) {
     DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
         completion()
@@ -46,6 +46,9 @@ class scanViewController: SchoscheViewController, UITableViewDelegate, UITableVi
         
         
     }
+    
+    
+    /// when click scan button on screen it refresh the table
     override func reloadTableData(){
         if discoveredMonitors.count > 0 {
             row = .device
@@ -79,6 +82,11 @@ class scanViewController: SchoscheViewController, UITableViewDelegate, UITableVi
         }
     }
     
+    
+    /// Showing a list of monitors available
+    /// - Parameters:
+    ///   - tableView: avilable monitors
+    /// - Returns: by choosing the device, it connects and brings to the next page to show information about the connected device
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch row {
         case .device:

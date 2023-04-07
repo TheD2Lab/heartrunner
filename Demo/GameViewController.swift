@@ -30,6 +30,7 @@ extension SKNode {
     }
 }
 
+/// calling the game scene up and the rest is controlled in GameScene.swift
 class GameViewController: UIViewController {
 
     // setting up mute button

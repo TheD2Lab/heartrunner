@@ -10,6 +10,7 @@ import SpriteKit
 import AVFoundation
 
 
+/// Baiscally a copy of GameScene.swift, but did not call most of the functions. Running as a blank screen and have the heart rate monitor recording running in the background, have a time calculator in code, as the 20 minute time is up the finished score board will pop up
 class BlankGameScene: SKScene, SKPhysicsContactDelegate{
 //    let verticalPipeGap = 150.0
     

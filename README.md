@@ -54,11 +54,15 @@ override func didMove(to view: SKView)
 // in GameScene.swift, update function is responsible for updating  properties on screen real time per screen update, at 60 fps
 override func update(_ currentTime: TimeInterval) 
 ```
+-----
+
+## 3. After running the application
+Since all the data files are stored locally on the device, it requires to move the file to another permanant location like cloud to further process the data.
 
 ------
-## 3. Trouble Shooting
+## 4. Trouble Shooting
 
-#### 3.1 Issue while installing
+#### 4.1 Issue while installing
 Issue with: during application installing from xcode to device.
 
 The solution: In xcode, go to signing and capabilities and  update the bundle id. then try installing again, as figure 3 shown.
@@ -73,7 +77,7 @@ There is a maximum capacity of device can be installed without an iOS developer 
 
 <br>
 
-#### 3.2 iPad app not available
+#### 4.2 iPad app not available
 Issue with: Application will not run on device.
 
 The error: When click on app on ipad, it prompts "App is not available".
@@ -84,7 +88,7 @@ Due to the application was not packaged as AppStore ready archive, the applicati
 
 <br>
 
-#### 3.3 Heart rate reading is below 60 constantly
+#### 4.3 Heart rate reading is below 60 constantly
 Issue with: heart rate is constantly showing below 60 during exercise.
 
 The error: The heart rate monitor is having problem reading, can due to contact spot moved.

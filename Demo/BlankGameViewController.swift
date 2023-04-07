@@ -39,9 +39,9 @@ class BlankGameViewController: UIViewController {
         super.viewDidLoad()
         
         if let scene = BlankGameScene.blankunarchiveFromFile("BlankGameScene") as? BlankGameScene {
-            print("blankview")
+//            print("blankview")
             let path = Bundle.main.path(forResource: "BlankGameScene", ofType: "sks")
-            print(path)
+//            print(path)
             // Configure the view.
             let skView = self.view as! SKView
             skView.showsFPS = false

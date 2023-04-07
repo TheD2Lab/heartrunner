@@ -10,16 +10,25 @@ import SpriteKit
 import AVFoundation
 
 
+/// GameScene: Main display of the application which takes in the heart rate reading from previous setting and react visually
 class GameScene: SKScene, SKPhysicsContactDelegate{
     
     
+    /// the avatar object
     var bird:SKSpriteNode!
+    /// avatar on scoreboard position
     var staticbird:SKSpriteNode!
+    /// background color (og)
     let skyColor = SKColor(red: 81.0/255.0, green: 192.0/255.0, blue: 201.0/255.0, alpha: 1.0)
+    /// background color (grey)
     let skyZoneOneColor = SKColor(red: 56.0/255.0, green: 61/255.0, blue: 63/255.0, alpha: 1.0)
+    /// background color (blue)
     let skyZoneTwoColor = SKColor(red: 14/255.0, green: 124/255.0, blue: 158/255.0, alpha: 1.0)
+    /// background color (green)
     let skyZoneThreeColor = SKColor(red: 85.0/255.0, green: 163/255.0, blue: 34/255.0, alpha: 1.0)
+    /// background color (oragne)
     let skyZoneFourColor = SKColor(red: 186/255.0, green: 138/255.0, blue: 5/255.0, alpha: 1.0)
+    /// background color (red)
     let skyZoneFiveColor = SKColor(red: 178/255.0, green: 12/255.0, blue: 73/255.0, alpha: 1.0)
     var pipeTextureUp:SKTexture!
     var pipeTextureDown:SKTexture!
@@ -27,16 +36,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
     var moving:SKNode!
     var pipes:SKNode!
     var canRestart = Bool()
+    /// position to for the scoreboard to show up on screen
     var scoreLabelNode:SKLabelNode!
+    /// position to for heart rate reading to show up on score board
     var birdheartrate:SKLabelNode!
+    /// variable to hold the heart rate monitor reading
     var score = NSInteger()
     var counter = NSInteger()
+    /// record the starting time to calculate the time remains for the exercise
     let starttime = Date()
+    /// to keep the maximum heart rate for to have a highest score after the exercise
     var maxreading: Int = 0
-    
     var runtime = 20
-    
+    /// music player state variable
     var player: AVAudioPlayer?
+    /// state of the music
     var playing = false
     
     let birdCategory: UInt32 = 1 << 0
@@ -44,6 +58,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
     let pipeCategory: UInt32 = 1 << 2
     let scoreCategory: UInt32 = 1 << 3
     
+    /// didMove: check any changes to the screen at the beginning, this works an init on screen to set up positions of different objects that needs to be show on screen
+    /// - Parameter view: screenview from SK, should not need to change anything on parameter
     override func didMove(to view: SKView) {
         
         //being init
@@ -61,7 +77,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
                 //reading
                 do {
                     let temp = try String(contentsOf: fileURL, encoding: .utf8)
-    //                print (temp)
                     self.runtime = Int(temp)!
                     print(self.runtime)
                 }
@@ -75,11 +90,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         self.physicsWorld.contactDelegate = self
         
         // setup background color
-//        skyColor = SKColor(red: 81.0/255.0, green: 192.0/255.0, blue: 201.0/255.0, alpha: 1.0)
         self.backgroundColor = skyZoneOneColor
         
         moving = SKNode()
         self.addChild(moving)
+        // did not want to spon the pipes
 //        pipes = SKNode()
 //        moving.addChild(pipes)
         
@@ -142,9 +157,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         self.addChild(bird)
         
         
-        
         //set heart rate board
-        
         let scoreBoardTexture = SKSpriteNode(imageNamed: "land")
         scoreBoardTexture.setScale(1.5)
         scoreBoardTexture.position = CGPoint(x: self.frame.size.width * 0.50, y:self.frame.size.height * 0.95)
@@ -193,6 +206,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         
     }
     
+    
+    /// create the yellow circle in for the clock countdown and set how many steps its counting down for
     func drawcircle(){
         
         // draw clock circle
@@ -207,7 +222,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
 
     }
     
-    // Creates an animated countdown timer
+    /// Creates an animated countdown timer
     func countdown(circle:SKShapeNode, steps:Int, duration:TimeInterval, completion:@escaping ()->Void) {
         guard let path = circle.path else {
             return
@@ -232,7 +247,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         }
     }
 
-    // Creates a CGPath in the shape of a pie with slices missing
+    /// Creates a CGPath in the shape of a pie with slices missing
     func circle(radius:CGFloat, percent:CGFloat) -> CGPath {
         let start:CGFloat = 0
         let end = CGFloat.pi * 2 * percent
@@ -245,6 +260,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
     }
 
     
+    /// screen change everything that needs to be update accordingly, reads the latest heart rate from the monitor, position of the avatar, [in the if part] the speed and background changes, the music trigger
     override func update(_ currentTime: TimeInterval) {
         
         
@@ -260,7 +276,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
 
             let fileURL = dir.appendingPathComponent(file)
 
-            //reading
+            // reading
             do {
                 let temp = try String(contentsOf: fileURL, encoding: .utf8)
                 reading = Int(temp)!
@@ -280,22 +296,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
                 let heartrateposition = (0.0065*tempreading) + 0.25
 
                 bird.position = CGPoint(x: self.frame.size.width * heartrateposition, y:self.frame.size.height * 0.5)
+               
                 
-                //get the reading of the other device on cloud and use that reading for the heart rate postion calculator
-//                let temp = try String(contentsOf: fileURL, encoding: .utf8)
-//                reading = Int(temp)!
-//                var tempreading = Double(reading)
-//                tempreading = tempreading - 70
-//                print(tempreading)
-                //170 as max heart rate
-                //170 is at height * 0.85
-                // 70 is at height * 0.35
-                // from 0.5 is range from 100 , 0.1 for every 20 bit, 100/0.5
-//                let heartrateposition = (0.005*tempreading) + 0.35
-//                blackbird.position = CGPoint(x: self.frame.size.width * heartrateposition, y:self.frame.size.height * 0.5)
-                
-                
-                //update heart rate score
+                // update heart rate score
                 birdheartrate.text = String(temp)
                 
                 
@@ -371,6 +374,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         
     }
     
+    
+    ///
+    /// - Parameter contact: <#contact description#>
     func didBegin(_ contact: SKPhysicsContact) {
         
         if moving.speed > 0 && score > 0 {
@@ -406,6 +412,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
     
     
     
+    /// return the file location of app locally
+    /// - Returns: <#description#>
     func getDocumentsDirectory() -> URL {
         // find all possible documents directories for this user
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
@@ -415,6 +423,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
     }
     
     
+    /// stop music running in background
     func musicstop(){
         if let player = player, player.isPlaying {
             //stop playback
@@ -425,6 +434,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         }
     }
     
+    /// stop music running in background
     func musicstart(){
         
         //set up player and play

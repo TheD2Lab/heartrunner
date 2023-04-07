@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Foundation
+//import Foundation
 
 
 class cameraViewController: UIViewController  {
