@@ -10,6 +10,7 @@ import UIKit
 //import Foundation
 
 
+/// calling the camera function to the screen
 class cameraViewController: UIViewController  {
     @IBOutlet var imageView: UIImageView!
     @IBOutlet var button: UIButton!
@@ -35,11 +36,15 @@ class cameraViewController: UIViewController  {
     
 }
 
+
 extension cameraViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)
     }
     
+    /// taking the last taken image and resizing it to 60*60 size. rename file to avatar.png and store in local folder to be called in the game scene page.
+    /// - Parameters:
+    ///   - picker: the last selfie image taken
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         picker.dismiss(animated: true, completion: nil)
         
@@ -64,6 +69,7 @@ func getDocumentsDirectory() -> URL {
     // just send back the first one, which ought to be the only one
     return paths[0]
 }
+
 extension UIImage {
     func resized(to size: CGSize) -> UIImage {
         return UIGraphicsImageRenderer(size: size).image { _ in
