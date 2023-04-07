@@ -9,6 +9,8 @@
 import UIKit
 
 @UIApplicationMain
+
+/// System file for error catching
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
