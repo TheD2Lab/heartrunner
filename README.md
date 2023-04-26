@@ -3,19 +3,28 @@
 
 ### 1.1 Hardware Requirement
 This application requires
-- Scosche Rythum Heart rate monitor
-- iOS device with iOS 13+ , device has to developer mode enabled (https://developer.apple.com/documentation/xcode/enabling-developer-mode-on-a-device)
+- Scosche Rhythm Heart Rate Monitor
+- iPad with iPadOS 13+ (Developer mode must be enabled)
 
+To turn on developer mode: https://developer.apple.com/documentation/xcode/enabling-developer-mode-on-a-device
 
+### 1.2. iPad Installation
+In addition to the application hardware requirements, the installation process requires: 
+- Computer with Xcode installed 
+- Cable to connect iPad to the computer (ex. Lightning cable) 
 
-### 1.2. Install the application onto ipad
-Installing the application onto a device requires a lightning cable connected to the device physically.
-In Xcode, choose the device you want to install the application on to, as figure 1 shown.
-
+Installation steps: 
+- Open the HeartRunner application in Xcode. 
+- Connect the iPad to your computer using the appropriate cable. 
+- If you see a pop-up asking, “Trust This Computer?”, tap “Trust”. 
+- In Xcode, select the iPad that you connected to the computer (see Figure 1). 
+- In Xcode, click the “play” button to run the application on your iPad. Xcode should indicate that the build was successful. 
+- On the iPad, go to Settings > General > VPN & Device Management. Tap on “Trust Developer Account” to allow the iPad to run the application. 
+- Find the installed application on your iPad. 
 
  ![screenshot](https://github.com/TheD2Lab/heartrunner/blob/main/xcode_choose_device.png?raw=true)
 
-###### Figure 1. choosing install device in xocde
+###### Figure 1. Choosing a target application for the build.
 <br>
 
 After seeing a prompt of "successfully install" from xcode, go to the iOS Device and General > VPN & Device Management > Press on  Trust developer account, as figure 2 shown.
@@ -23,7 +32,7 @@ After seeing a prompt of "successfully install" from xcode, go to the iOS Device
 
  ![screenshot](https://github.com/TheD2Lab/heartrunner/blob/main/setting.PNG?raw=true)
 
- ###### Figure 2. iOS setting to allow permission to run the installed application.
+ ###### Figure 2. Trusting developer account from the iPad.
 
 -----
 
@@ -39,7 +48,7 @@ scanViewController.swift
 ```swift
 dataViewController.swift 
 ```
-- Store away data from heart rate monitor to csv file and reading file locally.
+- Stores away data from heart rate monitor to csv file and reading file locally.
 ```swift
 GameScene.swift
 ```
@@ -56,41 +65,39 @@ override func update(_ currentTime: TimeInterval)
 ```
 -----
 
-## 3. After running the application
-Since all the data files are stored locally on the device, it requires to move the file to another permanant location like cloud to further process the data.
+## 3. Saving Data from the Application
+After each time the application is run, a .CSV file detailing the user’s heart rates and associated time stamps is saved to the local machine (iPad) files. For more organized and permanent storage of this data, these .CSV files should be moved to a different location (such as to a Google Drive folder).
 
 ------
-## 4. Trouble Shooting
+## 4. Troubleshooting
 
 #### 4.1 Issue while installing
-Issue with: during application installing from xcode to device.
+Issue with: during application installing from Xcode to device. 
 
-The solution: In xcode, go to signing and capabilities and  update the bundle id. then try installing again, as figure 3 shown.
+The solution: In Xcode, go to signing and capabilities and update the bundle ID. Try installing again, as shown in Figure 3. 
+
+Note: iOS developer accounts have limitations on how many devices an application can be installed on without submitting the application to the App Store. In order to bypass this limitation, we can change the Bundle ID. 
+
 <br>
  ![screenshot](https://github.com/TheD2Lab/heartrunner/blob/main/xcode_bundle_id.png?raw=true)
 
- ###### Figure 3. changing bundle ID in xcode
-
-<br>
-
-There is a maximum capacity of device can be installed without an iOS developer account, hence you cannot distribute the application at mass without submissing to AppStore.  
+ ###### Figure 3. Changing the bundle ID in Xcode.
 
 <br>
 
 #### 4.2 iPad app not available
-Issue with: Application will not run on device.
+Issue with: Application will not run on device. 
 
-The error: When click on app on ipad, it prompts "App is not available".
+The error: When you launch the app on iPad, the device prompts "App is not available". 
 
-The solution: Reinstall the application from xcode.
-Due to the application was not packaged as AppStore ready archive, the application will need to be reinstall onto the iPad to run after a period of time, expected to be the development contract expires, please refer to section 1.2
-
+The solution: Reinstall the application from Xcode. Due to the application was not packaged as App Store ready archive, the application will need to be reinstalled onto the iPad to run after a period of time (when the development contract expires; refer to section 1.2).
 
 <br>
 
-#### 4.3 Heart rate reading is below 60 constantly
-Issue with: heart rate is constantly showing below 60 during exercise.
+#### 4.3 Heart rate reading is below 60 constantly. 
 
-The error: The heart rate monitor is having problem reading, can due to contact spot moved.
+Issue with: Heart rate is constantly shown as below 60 during exercise. 
 
-The solution: switch to another monitor and restart the application with the remaining time in the application and combining the file at the end. 
+The error: The heart rate monitor is having problems providing accurate readings, sometimes due to improper attachment onto the user. 
+
+The solution: Switch to another monitor and restart the application, setting the exercise session time as what would be the remaining time in the original session before the error. Combine the files at the end. 
