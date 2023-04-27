@@ -11,9 +11,10 @@ import ScoscheSDK24
 import CoreBluetooth
 import UIKit
 
-/// dataViewController: Demo of connecting to a Scosche devices with BLE interface. View uses ScoscheViewController to extend a standard UIViewController with services that report monitor activity.
-///
-/// - Parameter monitor: ScoscheMonitor
+/// dataViewController: Demo of connecting to a Scosche devices with BLE interface. 
+    /// View uses ScoscheViewController to extend a standard UIViewController with 
+    /// services that report monitor activity.
+    /// - Parameter monitor: ScoscheMonitor
 class dataViewController: SchoscheViewController, UITableViewDelegate, UITableViewDataSource  {
     //MARK:- IB Refs
     
@@ -35,13 +36,13 @@ class dataViewController: SchoscheViewController, UITableViewDelegate, UITableVi
     //MARK:- Local Vars
     var listData: [cellRow] = []
     var returnState: cellType = .normal
-//    let dispatchQueue = DispatchQueue(label: "QueueIdentification", qos: .background)
+    // let dispatchQueue = DispatchQueue(label: "QueueIdentification", qos: .background)
     var readings: [Int] = []
     var temp: Int = 0
     var filename: String = "reading"
     
     
-    /// get the current time into a datetime format
+    /// currentLocalTime: Converts the current time into a datetime format. 
     func currentLocalTime() -> String {
         let currentDate = Date()
         // 1) Create a DateFormatter() object.
@@ -59,10 +60,10 @@ class dataViewController: SchoscheViewController, UITableViewDelegate, UITableVi
         return dateString
     }
     
-    
-    /// remove unwanted charaters from string to numbers only
-    /// - Parameter text: any string, date time format in this case
-    /// - Returns: numbers only datetime format to store in a file system
+    /// removeSpecialCharsFromString: Returns only the numeric characters from the String. 
+        /// remove unwanted charaters from string to numbers only
+        /// - Parameter text: any string, date time format in this case
+        /// - Returns: numbers only datetime format to store in a file system
     func removeSpecialCharsFromString(text: String) -> String {
         let okayChars : Set<Character> = Set("1234567890 ")
         return String(text.filter {okayChars.contains($0) })
@@ -89,12 +90,12 @@ class dataViewController: SchoscheViewController, UITableViewDelegate, UITableVi
     }
     
     
-    /// array to keep all the read monitor data
+    /// Keeps all the obtained heart rate reading data. 
     var heartratedata = [[String]]()
     
-    
-    /// writing the heart rate data array into the csv file and store it locally, with  2 columns, the heart rate and the timestamp of the read
-    /// - Parameter read: heart rate string from the heart rate monitor
+    /// CSVRecordFile: Writes heart rate data into the session’s .CSV file, using 2 columns: heart rate, timestamp. 
+        /// Writing the heart rate data array into the csv file and store it locally, with  2 columns, the heart rate and the timestamp of the read
+        /// - Parameter read: heart rate string from the heart rate monitor
     func CSVRecordFile(read: String){
         let output = OutputStream.toMemory()
 //        let filename = filename
@@ -127,8 +128,10 @@ class dataViewController: SchoscheViewController, UITableViewDelegate, UITableVi
     }
     
     
-    /// store away the 1 integer reading into the local file and for easy access and read for the later functions, the file will be read by other functions when visual is available
-    /// - Parameter read: heart rate string from the heart rate monitor
+    /// CSVReadingFile: Puts a heart rate reading into the session’s .txt file. 
+        /// Store away the 1 integer reading into the local file and for easy access and 
+        /// read for the later functions, the file will be read by other functions when visual is available
+        /// - Parameter read: heart rate string from the heart rate monitor
     func CSVReadingFile(read: String){
         let stringToSave = "\(read)"
         let readingfilename = "reading.txt"
@@ -140,7 +143,8 @@ class dataViewController: SchoscheViewController, UITableViewDelegate, UITableVi
     }
     
     
-    /// the original feed from the Demo application, which shows all the available data from the heart rate monitor as a table format
+    /// reloadTableData: Gets the original feed from the Demo application, showing all available data from the heart rate monitor. 
+        /// the original feed from the Demo application, which shows all the available data from the heart rate monitor as a table format
     override func reloadTableData(){
         CSVRecordFile(read: "\(heartRate)")
         CSVReadingFile(read: "\(heartRate)")
@@ -239,44 +243,54 @@ class dataViewController: SchoscheViewController, UITableViewDelegate, UITableVi
         return cell
     }
     
-    
-    /// setting run time as 20, and store it in the runtime.txt file for other function to read, connected to the 20 Min button
-    @IBAction func twentymin(_ sender: UIButton) {
-        let stringToSave = "20"
-        let runfilename = "runtime.txt"
-        let path = getDocumentsDirectory().appendingPathComponent(runfilename)
-        if let stringData = stringToSave.data(using: .utf8) {
-            try? stringData.write(to: path)
+    // Timer setting
+        /// twentymin: Sets exercise session timer to 20 minutes. 
+            /// setting run time as 20, and store it in the runtime.txt file for other function to read, connected to the 20 Min button
+        @IBAction func twentymin(_ sender: UIButton) {
+            let stringToSave = "20"
+            let runfilename = "runtime.txt"
+            let path = getDocumentsDirectory().appendingPathComponent(runfilename)
+            if let stringData = stringToSave.data(using: .utf8) {
+                try? stringData.write(to: path)
+            }
         }
-    }
-    /// setting run time as 15, and store it in the runtime.txt file for other function to read, connected to the 15 Min button
-    @IBAction func fifthteenmin(_ sender: UIButton) {
-        let stringToSave = "15"
-        let runfilename = "runtime.txt"
-        let path = getDocumentsDirectory().appendingPathComponent(runfilename)
-        if let stringData = stringToSave.data(using: .utf8) {
-            try? stringData.write(to: path)
+        
+        /// fifteenmin: Sets exercise session timer to 15 minutes. 
+            /// setting run time as 15, and store it in the runtime.txt file for other function to read, connected to the 15 Min button
+        @IBAction func fifthteenmin(_ sender: UIButton) {
+            let stringToSave = "15"
+            let runfilename = "runtime.txt"
+            let path = getDocumentsDirectory().appendingPathComponent(runfilename)
+            if let stringData = stringToSave.data(using: .utf8) {
+                try? stringData.write(to: path)
+            }
         }
-    }
-    /// setting run time as 10, and store it in the runtime.txt file for other function to read, connected to the 10 Min button
-    @IBAction func tenmin(_ sender: UIButton) {
-        let stringToSave = "10"
-        let runfilename = "runtime.txt"
-        let path = getDocumentsDirectory().appendingPathComponent(runfilename)
-        if let stringData = stringToSave.data(using: .utf8) {
-            try? stringData.write(to: path)
+
+        /// tenmin: Sets exercise session timer to 10 minutes. 
+            /// setting run time as 10, and store it in the runtime.txt file for other function to read, connected to the 10 Min button
+        @IBAction func tenmin(_ sender: UIButton) {
+            let stringToSave = "10"
+            let runfilename = "runtime.txt"
+            let path = getDocumentsDirectory().appendingPathComponent(runfilename)
+            if let stringData = stringToSave.data(using: .utf8) {
+                try? stringData.write(to: path)
+            }
         }
-    }
-    /// setting run time as 5, and store it in the runtime.txt file for other function to read, connected to the 5 Min button
-    @IBAction func fivemin(_ sender: UIButton) {
-        let stringToSave = "5"
-        let runfilename = "runtime.txt"
-        let path = getDocumentsDirectory().appendingPathComponent(runfilename)
-        if let stringData = stringToSave.data(using: .utf8) {
-            try? stringData.write(to: path)
+
+        /// fivemin: Sets exercise session timer to 5 minutes. 
+            /// setting run time as 5, and store it in the runtime.txt file for other function to read, connected to the 5 Min button
+        @IBAction func fivemin(_ sender: UIButton) {
+            let stringToSave = "5"
+            let runfilename = "runtime.txt"
+            let path = getDocumentsDirectory().appendingPathComponent(runfilename)
+            if let stringData = stringToSave.data(using: .utf8) {
+                try? stringData.write(to: path)
+            }
         }
-    }
-    /// setting run time as 0, and store it in the runtime.txt file for other function to read, connected to the blank button
+
+    // blankmin: Sets run time as 0 and stores in the session’s .txt file. 
+        /// Setting run time as 0, and store it in the runtime.txt file for other 
+        /// function to read, connected to the blank button
     @IBAction func blankmin(_ sender: UIButton) {
         let stringToSave = "0"
         let runfilename = "runtime.txt"

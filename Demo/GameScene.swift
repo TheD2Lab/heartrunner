@@ -6,6 +6,10 @@
 //  Copyright (c) 2014 Fullstack.io. All rights reserved.
 //
 
+// For HeartRunner 2.0 edits: The main display of the application, 
+// containing components which change according to the most recent heart 
+// rate reading of the user. 
+
 import SpriteKit
 import AVFoundation
 
@@ -13,44 +17,64 @@ import AVFoundation
 /// GameScene: Main display of the application which takes in the heart rate reading from previous setting and react visually
 class GameScene: SKScene, SKPhysicsContactDelegate{
     
-    
     /// the avatar object
     var bird:SKSpriteNode!
+
     /// avatar on scoreboard position
     var staticbird:SKSpriteNode!
-    /// background color (og)
-    let skyColor = SKColor(red: 81.0/255.0, green: 192.0/255.0, blue: 201.0/255.0, alpha: 1.0)
-    /// background color (grey)
-    let skyZoneOneColor = SKColor(red: 56.0/255.0, green: 61/255.0, blue: 63/255.0, alpha: 1.0)
-    /// background color (blue)
-    let skyZoneTwoColor = SKColor(red: 14/255.0, green: 124/255.0, blue: 158/255.0, alpha: 1.0)
-    /// background color (green)
-    let skyZoneThreeColor = SKColor(red: 85.0/255.0, green: 163/255.0, blue: 34/255.0, alpha: 1.0)
-    /// background color (oragne)
-    let skyZoneFourColor = SKColor(red: 186/255.0, green: 138/255.0, blue: 5/255.0, alpha: 1.0)
-    /// background color (red)
-    let skyZoneFiveColor = SKColor(red: 178/255.0, green: 12/255.0, blue: 73/255.0, alpha: 1.0)
-    var pipeTextureUp:SKTexture!
-    var pipeTextureDown:SKTexture!
-    var movePipesAndRemove:SKAction!
-    var moving:SKNode!
-    var pipes:SKNode!
+
+    // Background Colors
+        /// The original background color of the visualization.
+        let skyColor = SKColor(red: 81.0/255.0, green: 192.0/255.0, blue: 201.0/255.0, alpha: 1.0)
+
+        /// The background color of the visualization once heart rate < 80 BPM. 
+        let skyZoneOneColor = SKColor(red: 56.0/255.0, green: 61/255.0, blue: 63/255.0, alpha: 1.0)
+
+        /// The background color of the visualization once heart rate is between 90 and 100 BPM. 
+        let skyZoneTwoColor = SKColor(red: 14/255.0, green: 124/255.0, blue: 158/255.0, alpha: 1.0)
+
+        /// The background color of the visualization once heart rate is between 100 and 110 BPM. 
+        let skyZoneThreeColor = SKColor(red: 85.0/255.0, green: 163/255.0, blue: 34/255.0, alpha: 1.0)
+
+        /// The background color of the visualization once heart rate is between 110 and 120 BPM. 
+        let skyZoneFourColor = SKColor(red: 186/255.0, green: 138/255.0, blue: 5/255.0, alpha: 1.0)
+        
+        /// The background color of the visualization once heart rate is between 120 and 130 BPM. 
+        let skyZoneFiveColor = SKColor(red: 178/255.0, green: 12/255.0, blue: 73/255.0, alpha: 1.0)
+
+    // Variables relating to the "pipes" in the original Flappy Bird application
+        var pipeTextureUp:SKTexture!
+        var pipeTextureDown:SKTexture!
+        var movePipesAndRemove:SKAction!
+        var moving:SKNode!
+        var pipes:SKNode!
+
+    /// Defines if the application can be restarted at a point in time.
     var canRestart = Bool()
-    /// position to for the scoreboard to show up on screen
+
+    /// The position of the scoreboard on screen. 
     var scoreLabelNode:SKLabelNode!
-    /// position to for heart rate reading to show up on score board
+
+    /// The position of the heart rate reading on the scoreboard. 
     var birdheartrate:SKLabelNode!
-    /// variable to hold the heart rate monitor reading
+
+    /// Holds the most recent heart rate reading. 
     var score = NSInteger()
+
     var counter = NSInteger()
-    /// record the starting time to calculate the time remains for the exercise
+
+    /// Holds the start time of the exercise session. 
     let starttime = Date()
-    /// to keep the maximum heart rate for to have a highest score after the exercise
+
+    /// Holds the most current maximum heart rate reading of the exercise session. 
     var maxreading: Int = 0
+
     var runtime = 20
-    /// music player state variable
+
+    /// The music player. 
     var player: AVAudioPlayer?
-    /// state of the music
+
+    /// Keeps track of if the music player is on or off. 
     var playing = false
     
     let birdCategory: UInt32 = 1 << 0
@@ -58,8 +82,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
     let pipeCategory: UInt32 = 1 << 2
     let scoreCategory: UInt32 = 1 << 3
     
-    /// didMove: check any changes to the screen at the beginning, this works an init on screen to set up positions of different objects that needs to be show on screen
-    /// - Parameter view: screenview from SK, should not need to change anything on parameter
+    /// didMove: Sets up the initial positions, colors, and other properties of UI components. 
+        /// Check any changes to the screen at the beginning, this works an init on screen to set up positions of 
+        /// different objects that needs to be show on screen
+        /// - Parameter view: screenview from SK, should not need to change anything on parameter
     override func didMove(to view: SKView) {
         
         //being init
@@ -206,8 +232,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         
     }
     
-    
-    /// create the yellow circle in for the clock countdown and set how many steps its counting down for
+    /// drawCircle: Defines properties of the countdown pie timer, such as color and number of "slices”. 
+        /// Create the yellow circle in for the clock countdown and set how many steps its counting down for
     func drawcircle(){
         
         // draw clock circle
@@ -222,7 +248,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
 
     }
     
-    /// Creates an animated countdown timer
+    /// countdown: Creates an animated countdown timer using the circle defined earlier. 
     func countdown(circle:SKShapeNode, steps:Int, duration:TimeInterval, completion:@escaping ()->Void) {
         guard let path = circle.path else {
             return
@@ -247,7 +273,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         }
     }
 
-    /// Creates a CGPath in the shape of a pie with slices missing
+    /// circle: Creates a CGPath in shape of a pie with slices missing.
     func circle(radius:CGFloat, percent:CGFloat) -> CGPath {
         let start:CGFloat = 0
         let end = CGFloat.pi * 2 * percent
@@ -260,7 +286,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
     }
 
     
-    /// screen change everything that needs to be update accordingly, reads the latest heart rate from the monitor, position of the avatar, [in the if part] the speed and background changes, the music trigger
+    /// update: Configures components of the screen according to the latest 
+        /// heart rate monitor readings, including: heart rate reading text, 
+        /// avatar position, background speed, background color, music start/stop. 
     override func update(_ currentTime: TimeInterval) {
         
         
@@ -412,8 +440,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
     
     
     
-    /// return the file location of app locally
-    /// - Returns: <#description#>
+    /// geDocumentsDirectory: Returns the location of the file on the local device. 
+        /// - Returns: <#description#>
     func getDocumentsDirectory() -> URL {
         // find all possible documents directories for this user
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
@@ -423,7 +451,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
     }
     
     
-    /// stop music running in background
+    /// musicStop: Stops the background music. 
     func musicstop(){
         if let player = player, player.isPlaying {
             //stop playback
@@ -434,7 +462,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         }
     }
     
-    /// stop music running in background
+    /// musicStart: Starts the background music. 
+        /// If the “player” instance is not instantiated, it instantiates the 
+        /// object with a file from the “Music” directory. 
     func musicstart(){
         
         //set up player and play

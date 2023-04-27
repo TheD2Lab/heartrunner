@@ -16,9 +16,9 @@ func delay(_ seconds: Double, completion: @escaping () -> ()) {
     }
 }
 
-/// scanViewController: Demo of scanning for known Scosche devices with BLE interface. View uses ScoscheViewController to extend a standard UIViewController with services that report monitor activity.
-///
-/// - Parameter monitor: ScoscheMonitor
+/// scanViewController: Demo of scanning for known Scosche devices with BLE interface. 
+    /// View uses ScoscheViewController to extend a standard UIViewController with services that report monitor activity.
+    /// - Parameter monitor: ScoscheMonitor
 class scanViewController: SchoscheViewController, UITableViewDelegate, UITableViewDataSource {
     
     enum Row{
@@ -48,7 +48,7 @@ class scanViewController: SchoscheViewController, UITableViewDelegate, UITableVi
     }
     
     
-    /// when click scan button on screen it refresh the table
+    /// reloadTableData: Refreshes the table when ‘Scan’ is tapped. 
     override func reloadTableData(){
         if discoveredMonitors.count > 0 {
             row = .device
@@ -83,7 +83,7 @@ class scanViewController: SchoscheViewController, UITableViewDelegate, UITableVi
     }
     
     
-    /// Showing a list of monitors available
+    /// tableView: Displays a list of heart rate monitors available for connection. 
     /// - Parameters:
     ///   - tableView: avilable monitors
     /// - Returns: by choosing the device, it connects and brings to the next page to show information about the connected device
